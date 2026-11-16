@@ -80,7 +80,7 @@ class WebSocketImpl {
         return this.status;
     }
 
-    public send(data: string | ArrayBuffer | ArrayBufferView | Blob): void {
+    public send(data: Parameters<WebSocket['send']>[0]): void {
         if (this.connection) {
             this.connection.send(data);
         }
