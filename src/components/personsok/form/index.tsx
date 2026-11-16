@@ -78,8 +78,8 @@ const personSokSchema = z
         birthDateTo: z.date().optional(),
         birthDateFromFeil: datoFeil.optional(),
         birthDateToFeil: datoFeil.optional(),
-        ageFrom: z.number({ coerce: true, message: 'Må være et gyldig tall' }).min(0).optional(),
-        ageTo: z.number({ coerce: true, message: 'Må være et gyldig tall' }).min(0).optional(),
+        ageFrom: z.coerce.number<string | number>({ error: 'Må være et gyldig tall' }).min(0).optional(),
+        ageTo: z.coerce.number<string | number>({ error: 'Må være et gyldig tall' }).min(0).optional(),
         gender: z.enum(['M', 'K', '']),
         address: z.string(),
         phoneNumber: z
@@ -156,7 +156,7 @@ export function PersonsokForm({ onSubmit, onReset }: Props) {
             firstName: '',
             lastName: '',
             dnr: ''
-        } as z.infer<typeof personSokSchema>,
+        } as z.input<typeof personSokSchema>,
         validators: {
             onChange: personSokSchema
         },
@@ -240,9 +240,7 @@ export function PersonsokForm({ onSubmit, onReset }: Props) {
                                     inputMode="numeric"
                                     size="small"
                                     label={fieldLabels[field.name][0]}
-                                    onChange={(e) =>
-                                        field.handleChange((e.target.value as unknown as number) ?? undefined)
-                                    }
+                                    onChange={(e) => field.handleChange(e.target.value)}
                                     onBlur={field.handleBlur}
                                     value={field.state.value}
                                     error={field.state.meta.errors.join(', ')}
@@ -255,9 +253,7 @@ export function PersonsokForm({ onSubmit, onReset }: Props) {
                                     inputMode="numeric"
                                     size="small"
                                     label={fieldLabels[field.name][0]}
-                                    onChange={(e) =>
-                                        field.handleChange((e.target.value as unknown as number) ?? undefined)
-                                    }
+                                    onChange={(e) => field.handleChange(e.target.value)}
                                     onBlur={field.handleBlur}
                                     value={field.state.value}
                                     error={field.state.meta.errors.join(', ')}
