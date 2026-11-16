@@ -4,7 +4,6 @@ import { Hovedknapp } from 'nav-frontend-knapper';
 import { RadioPanelGruppe, type RadioPanelProps } from 'nav-frontend-skjema';
 import { type FormEvent, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useAppDispatch } from 'src/redux/ThunkTypes';
 import { type FetchError, post } from 'src/api/api';
 import { apiBaseUri } from 'src/api/config';
 import { LenkeKnapp } from 'src/components/common-styled-components';
@@ -18,6 +17,7 @@ import type {
 import type { Oppgave } from 'src/models/meldinger/oppgave';
 import { setIngenValgtTraadDialogpanel } from 'src/redux/oppgave/actions';
 import type { AppState } from 'src/redux/reducers';
+import { useAppDispatch } from 'src/redux/ThunkTypes';
 import dialogResource from 'src/rest/resources/dialogResource';
 import tildelteoppgaver from 'src/rest/resources/tildelteoppgaverResource';
 import { trackGenereltUmamiEvent, trackingEvents } from 'src/utils/analytics';

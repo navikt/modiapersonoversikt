@@ -3,7 +3,6 @@ import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import Panel from 'nav-frontend-paneler';
 import { Normaltekst, UndertekstBold, Undertittel } from 'nav-frontend-typografi';
-import { useAppDispatch } from 'src/redux/ThunkTypes';
 import EnkeltMelding from 'src/app/personside/infotabs/meldinger/traadvisning/Enkeltmelding';
 import {
     nyesteMelding,
@@ -14,6 +13,7 @@ import {
 import { useDialogpanelState } from 'src/context/dialogpanel-state';
 import type { Traad } from 'src/models/meldinger/meldinger';
 import { setValgtTraadDialogpanel } from 'src/redux/oppgave/actions';
+import { useAppDispatch } from 'src/redux/ThunkTypes';
 import theme from 'src/styles/personOversiktTheme';
 import { useAppState } from 'src/utils/customHooks';
 import { datoSynkende, formatterDato, formatterDatoTid } from 'src/utils/date-utils';

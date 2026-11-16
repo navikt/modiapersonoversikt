@@ -3,7 +3,6 @@ import { Block } from '@tanstack/react-router';
 import { guid } from 'nav-frontend-js-utils';
 import { Undertittel } from 'nav-frontend-typografi';
 import { type FormEvent, useCallback, useMemo, useRef, useState } from 'react';
-import { useAppDispatch } from 'src/redux/ThunkTypes';
 import { type FetchError, post } from 'src/api/api';
 import { apiBaseUri } from 'src/api/config';
 import FortsettDialog from 'src/app/personside/dialogpanel/fortsettDialog/FortsettDialog';
@@ -21,6 +20,7 @@ import { type SendMeldingRequestV2, type Traad, TraadType } from 'src/models/mel
 import type { Oppgave } from 'src/models/meldinger/oppgave';
 import { Temagruppe } from 'src/models/temagrupper';
 import { setIngenValgtTraadDialogpanel } from 'src/redux/oppgave/actions';
+import { useAppDispatch } from 'src/redux/ThunkTypes';
 import dialogResource from 'src/rest/resources/dialogResource';
 import journalsakResource from 'src/rest/resources/journalsakResource';
 import tildelteoppgaver from 'src/rest/resources/tildelteoppgaverResource';
