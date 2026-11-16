@@ -3,7 +3,7 @@ import { Block } from '@tanstack/react-router';
 import { guid } from 'nav-frontend-js-utils';
 import { Undertittel } from 'nav-frontend-typografi';
 import { type FormEvent, useCallback, useMemo, useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useAppDispatch } from 'src/redux/ThunkTypes';
 import { type FetchError, post } from 'src/api/api';
 import { apiBaseUri } from 'src/api/config';
 import FortsettDialog from 'src/app/personside/dialogpanel/fortsettDialog/FortsettDialog';
@@ -88,7 +88,7 @@ function FortsettDialogContainer(props: Props) {
     const [dialogStatus, setDialogStatus] = useState<FortsettDialogPanelState>({
         type: DialogPanelStatus.UNDER_ARBEID
     });
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const updateState = useCallback(
         (change: Partial<FortsettDialogState>) =>
             setState((currentState) => {

@@ -1,6 +1,6 @@
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import { type JSX, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useAppDispatch } from 'src/redux/ThunkTypes';
 import { usePersonAtomValue } from 'src/lib/state/context';
 import { postWithConflictVerification, RespectConflictError } from '../../../../api/api';
 import { apiBaseUri } from '../../../../api/config';
@@ -33,7 +33,7 @@ function useOpprettHenvendelse(traad: Traad): OpprettHenvendelseReturns {
     const [error, setError] = useState(false);
     const [response, setResponse] = useState<OpprettHenvendelseResponse | undefined>();
     const tildelteoppgaver = tildelteoppgaverResource.useFetch();
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const fnr = usePersonAtomValue();
 
     useOnMount(function getBehandlingsId() {

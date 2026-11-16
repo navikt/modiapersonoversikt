@@ -2,7 +2,7 @@ import { guid } from 'nav-frontend-js-utils';
 import Panel from 'nav-frontend-paneler';
 import { Undertittel } from 'nav-frontend-typografi';
 import { useCallback, useRef } from 'react';
-import { useDispatch } from 'react-redux';
+import { useAppDispatch } from 'src/redux/ThunkTypes';
 import { settValgtPeriode } from 'src/redux/oppfolging/actions';
 import { useOppfolgingFilter } from 'src/redux/oppfolging/reducer';
 import type { PeriodeOptions } from 'src/redux/utbetalinger/types';
@@ -38,7 +38,7 @@ const InputPanel = styled.form`
 
 function OppfolgingFilter() {
     const headerId = useRef(guid());
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const periode = useOppfolgingFilter();
     const updateFilter = useCallback(
         (change: PeriodeOptions) => {

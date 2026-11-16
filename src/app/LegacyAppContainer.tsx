@@ -1,8 +1,9 @@
 import ModalWrapper from 'nav-frontend-modal';
-import { Provider, useDispatch } from 'react-redux';
+import { Provider } from 'react-redux';
 import { applyMiddleware, createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import thunk from 'redux-thunk';
+import { thunk } from 'redux-thunk';
+import { useAppDispatch } from 'src/redux/ThunkTypes';
 import GlobalStyling from 'src/app/GlobalStyling';
 import IeMacStyling from 'src/app/IeMacStyling';
 import reducers from 'src/redux/reducers';
@@ -35,7 +36,7 @@ const store = createStore(reducers(), composeWithDevTools({ trace: true })(apply
 
 const ReduxJotaiCompat = () => {
     const [aktivBruker] = useAtom(aktivBrukerAtom);
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
         dispatch(setGjeldendeBrukerIRedux(aktivBruker ?? ''));

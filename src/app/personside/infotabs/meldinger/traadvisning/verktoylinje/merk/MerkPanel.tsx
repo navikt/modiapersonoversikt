@@ -3,7 +3,8 @@ import { AlertStripeFeil, AlertStripeInfo, AlertStripeSuksess } from 'nav-fronte
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { RadioPanelGruppe, type RadioPanelProps } from 'nav-frontend-skjema';
 import { type FormEvent, useRef, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { useAppDispatch } from 'src/redux/ThunkTypes';
 import { type FetchError, post } from 'src/api/api';
 import { apiBaseUri } from 'src/api/config';
 import { LenkeKnapp } from 'src/components/common-styled-components';
@@ -102,7 +103,7 @@ function finnOppgaveForTraad(
 }
 
 function MerkPanel(props: Props) {
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const queryClient = useQueryClient();
     const valgtTraad = props.valgtTraad;
     const tildelteOppgaverResource = tildelteoppgaver.useFetch();

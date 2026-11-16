@@ -3,7 +3,7 @@ import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import Panel from 'nav-frontend-paneler';
 import { Normaltekst, UndertekstBold, Undertittel } from 'nav-frontend-typografi';
-import { useDispatch } from 'react-redux';
+import { useAppDispatch } from 'src/redux/ThunkTypes';
 import EnkeltMelding from 'src/app/personside/infotabs/meldinger/traadvisning/Enkeltmelding';
 import {
     nyesteMelding,
@@ -64,7 +64,7 @@ function AlleMeldinger({ traad, sokeord }: { traad: Traad; sokeord: string }) {
 }
 
 function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const dialogpanel = useDialogpanelState();
     const dialogpanelTraad = useAppState((state) => state.oppgaver.dialogpanelTraad);
 

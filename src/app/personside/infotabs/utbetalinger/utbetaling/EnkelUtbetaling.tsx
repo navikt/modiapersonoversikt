@@ -1,6 +1,6 @@
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { useRef } from 'react';
-import { useDispatch } from 'react-redux';
+import { useAppDispatch } from 'src/redux/ThunkTypes';
 import { trackVisDetaljvisning } from 'src/utils/analytics';
 import styled from 'styled-components';
 import { Bold, SpaceBetween } from '../../../../../components/common-styled-components';
@@ -53,7 +53,7 @@ const UtbetalingHeaderStyle = styled.div`
 function EnkelUtbetaling(props: Props) {
     const printerButtonRef = useRef<HTMLSpanElement>(null);
     const utbetalingRef = useRef<HTMLLIElement>(null);
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const printer = usePrinter();
     const utbetalingerState = useAppState((state) => state.utbetalinger);
     const erIFokus = utbetalingerState.ytelseIFokus === props.ytelse;
