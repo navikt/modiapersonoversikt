@@ -1,7 +1,7 @@
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import { type JSX, useState } from 'react';
-import { useAppDispatch } from 'src/redux/ThunkTypes';
 import { usePersonAtomValue } from 'src/lib/state/context';
+import { useAppDispatch } from 'src/redux/ThunkTypes';
 import { postWithConflictVerification, RespectConflictError } from '../../../../api/api';
 import { apiBaseUri } from '../../../../api/config';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
