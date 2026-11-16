@@ -1,6 +1,6 @@
 import type { UseQueryResult } from '@tanstack/react-query';
-import { applyMiddleware, createStore, type Dispatch, type Store } from 'redux';
-import thunkMiddleware from 'redux-thunk';
+import { applyMiddleware, createStore, type Store } from 'redux';
+import { thunk } from 'redux-thunk';
 import * as modiapersonoversiktApiClient from 'src/lib/clients/modiapersonoversikt-api';
 import { getArbeidsoppfolgingDTO, getMockOppslagArbeidssoekerregisteret } from 'src/mock/oppfolging-mock';
 import { statiskArbeidsavklaringspengerMock } from 'src/mock/ytelse/statiskArbeidsavklaringspengerMock';
@@ -40,13 +40,10 @@ import utbetalingerResource from '../rest/resources/utbetalingerResource';
 import varselResource from '../rest/resources/varselResource';
 
 export function getTestStore(): Store<AppState> {
-    const testStore = createStore(reducers(), applyMiddleware(thunkMiddleware));
+    const testStore = createStore(reducers(), applyMiddleware(thunk));
     const aremarkFnr = aremark.personIdent;
 
-    // eslint-disable-next-line
-    //biome-ignore lint/suspicious/noExplicitAny: biome migration
-    const dispatch = testStore.dispatch as Dispatch<any>;
-    dispatch(setGjeldendeBrukerIRedux(aremarkFnr));
+    testStore.dispatch(setGjeldendeBrukerIRedux(aremarkFnr));
 
     return testStore;
 }
