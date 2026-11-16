@@ -2,8 +2,8 @@ import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import Panel from 'nav-frontend-paneler';
 import { Element, Undertittel } from 'nav-frontend-typografi';
 import { useCallback } from 'react';
-import { useDispatch } from 'react-redux';
 import type { UtbetalingerResponse } from 'src/models/utbetalinger';
+import { useAppDispatch } from 'src/redux/ThunkTypes';
 import { oppdaterFilter } from 'src/redux/utbetalinger/actions';
 import type { UtbetalingFilterState } from 'src/redux/utbetalinger/types';
 import { useUtbetalingerFilter } from 'src/redux/utbetalinger/utbetalingerReducer';
@@ -54,7 +54,7 @@ function visCheckbokser(utbetalingerResponse: UtbetalingerResponse): boolean {
 }
 
 function UtbetalingFiltrering() {
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const filter = useUtbetalingerFilter();
     const periode = filter.periode.egendefinertPeriode;
     const utbetalinger = utbetalingerResource.useFetch(periode.fra, periode.til);
