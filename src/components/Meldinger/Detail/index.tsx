@@ -51,7 +51,7 @@ const TraadDetailContent = ({ traad }: { traad: Traad }) => {
                                 Tråden ligger til behandling for sladding
                             </InlineMessage>
                         )}
-                        {traad.sattTilSladdingAv && (
+                        {traad.sattTilSladdingAv && melding.sendtTilSladding && (
                             <InlineMessage status="warning" size="small">
                                 Tråden er satt til sladding av {traad.sattTilSladdingAv}
                             </InlineMessage>
