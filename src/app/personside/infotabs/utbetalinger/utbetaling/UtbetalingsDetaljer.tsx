@@ -1,11 +1,11 @@
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
+import { formaterNOK } from 'src/utils/string-utils';
 import styled from 'styled-components';
 import type { Ytelse, Ytelseskomponent } from '../../../../../models/utbetalinger';
 import theme from '../../../../../styles/personOversiktTheme';
 import { Table } from '../../../../../utils/table/Table';
 import {
-    formaterNOK,
     skattBelopAscComparator,
     trekkBelopAscComparator,
     ytelseBelopDescComparator

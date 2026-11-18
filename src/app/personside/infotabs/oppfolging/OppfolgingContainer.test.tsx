@@ -1,5 +1,5 @@
 import { act, screen } from '@testing-library/react';
-import { renderWithProviders } from 'src/test/Testprovider';
+import { renderWithProviders } from 'src/test/LegacyTestprovider';
 import { setupReactQueryMocks } from 'src/test/testStore';
 import OppfolgingContainer from './OppfolgingContainer';
 

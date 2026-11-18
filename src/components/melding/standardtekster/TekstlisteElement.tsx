@@ -1,6 +1,6 @@
 import { HStack } from '@navikt/ds-react';
 import { useRef, useState } from 'react';
-import type * as StandardTekster from 'src/app/personside/dialogpanel/sendMelding/standardTekster/domain.ts';
+import type * as StandardTekster from 'src/lib/types/skrivestotte';
 import { twMerge } from 'tailwind-merge';
 
 interface Props {

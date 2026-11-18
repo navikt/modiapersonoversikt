@@ -1,8 +1,8 @@
 import Tekstomrade, { LinebreakRule, ParagraphRule, type Rule } from 'nav-frontend-tekstomrade';
 import * as React from 'react';
+import type * as StandardTekster from 'src/lib/types/skrivestotte';
 import styled from 'styled-components';
 import theme, { pxToRem } from '../../../../../../styles/personOversiktTheme';
-import type * as StandardTekster from '../domain';
 
 const StyledLi = styled.li`
   position: relative;

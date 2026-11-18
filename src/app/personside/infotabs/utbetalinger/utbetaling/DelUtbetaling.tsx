@@ -8,10 +8,11 @@ import type { AppState } from 'src/redux/reducers';
 import { setEkspanderYtelse, setNyYtelseIFokus } from 'src/redux/utbetalinger/actions';
 import { trackVisDetaljvisning } from 'src/utils/analytics';
 import { cancelIfHighlighting } from 'src/utils/function-utils';
+import { formaterNOK } from 'src/utils/string-utils';
 import styled from 'styled-components';
 import DetaljerCollapse from '../../../../../components/DetaljerCollapse';
 import theme from '../../../../../styles/personOversiktTheme';
-import { formaterNOK, periodeStringFromYtelse } from '../utils/utbetalinger-utils';
+import { periodeStringFromYtelse } from '../utils/utbetalinger-utils';
 import UtbetalingsDetaljer from './UtbetalingsDetaljer';
 
 interface OwnProps {

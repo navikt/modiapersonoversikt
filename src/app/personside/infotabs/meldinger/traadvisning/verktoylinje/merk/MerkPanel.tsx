@@ -21,6 +21,7 @@ import dialogResource from 'src/rest/resources/dialogResource';
 import tildelteoppgaver from 'src/rest/resources/tildelteoppgaverResource';
 import { trackGenereltUmamiEvent, trackingEvents } from 'src/utils/analytics';
 import { useFocusOnFirstFocusable } from 'src/utils/hooks/use-focus-on-first-focusable';
+import { erMeldingstypeSamtalereferat } from 'src/utils/meldinger-utils';
 import styled from 'styled-components';
 import {
     eldsteMelding,
@@ -29,7 +30,6 @@ import {
     erFeilsendt,
     erJournalfort,
     erMeldingFeilsendt,
-    erMeldingstypeSamtalereferat,
     kanBesvares
 } from '../../../utils/meldingerUtils';
 import { Resultat } from '../utils/VisPostResultat';

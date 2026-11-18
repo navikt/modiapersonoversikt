@@ -1,6 +1,6 @@
 import { Normaltekst } from 'nav-frontend-typografi';
+import type { Sikkerhetstiltak as SikkerhetstiltakInterface } from 'src/models/person/persondata';
 import SikkerhetsTiltakIkon from '../../../../../svg/Sikkerhetstiltak';
-import type { Sikkerhetstiltak as SikkerhetstiltakInterface } from '../../PersondataDomain';
 import GyldighetsPeriode from '../GyldighetsPeriode';
 import VisittkortElement from '../VisittkortElement';
 import { VisittkortGruppe } from '../VisittkortStyles';

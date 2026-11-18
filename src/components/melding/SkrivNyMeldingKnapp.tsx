@@ -2,7 +2,8 @@ import { NotePencilIcon } from '@navikt/aksel-icons';
 import { BodyLong, Button, Dialog, HStack } from '@navikt/ds-react';
 import { useAtom, useAtomValue } from 'jotai';
 import { useRef, useState } from 'react';
-import { draftAtom, nyMeldingUnderArbeidAtom, svarUnderArbeidAtom } from 'src/lib/state/dialog';
+import { nyMeldingUnderArbeidAtom, svarUnderArbeidAtom } from 'src/lib/state/dialog';
+import { draftAtom } from 'src/lib/state/draft';
 import { trackGenereltUmamiEvent, trackingEvents } from 'src/utils/analytics';
 
 export const SkrivNyMeldingKnapp = () => {

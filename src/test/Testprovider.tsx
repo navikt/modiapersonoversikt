@@ -3,20 +3,13 @@ import { createRootRoute, createRoute, createRouter, RouterProvider } from '@tan
 import { render } from '@testing-library/react';
 import { createStore, Provider as JProvider } from 'jotai';
 import type { ReactElement, ReactNode } from 'react';
-import { Provider } from 'react-redux';
-import type { Store } from 'redux';
 import { aktivBrukerAtom } from 'src/lib/state/context';
+import { aremark } from 'src/mock/persondata/aremark';
 import { DialogpanelStateProvider } from '../context/dialogpanel-state';
 import { MeldingsokProvider } from '../context/meldingsok';
 import { ValgtEnhetProvider } from '../context/valgtenhet-state';
 import { VisittkortStateProvider } from '../context/visittkort-state';
-import type { AppState } from '../redux/reducers';
-import { getTestStore } from './testStore';
 
-interface Props {
-    children: ReactNode;
-    customStore?: Store<AppState>;
-}
 const queryClient = new QueryClient({
     defaultOptions: {
         queries: {
@@ -27,31 +20,28 @@ const queryClient = new QueryClient({
     }
 });
 
-const setupTestRouter = (customStore: Props['customStore'], children: Props['children']) => {
+const setupTestRouter = (fnr: string, children: ReactNode) => {
     const rootRoute = createRootRoute();
-    const store = customStore || getTestStore();
 
     const jstore = createStore();
-    jstore.set(aktivBrukerAtom, store.getState().gjeldendeBruker.fødselsnummer);
+    jstore.set(aktivBrukerAtom, fnr);
 
     const routeTree = rootRoute.addChildren([
         createRoute({
             getParentRoute: () => rootRoute,
             path: '$',
             component: () => (
-                <Provider store={store}>
-                    <JProvider store={jstore}>
-                        <QueryClientProvider client={queryClient}>
-                            <DialogpanelStateProvider>
-                                <VisittkortStateProvider>
-                                    <MeldingsokProvider>
-                                        <ValgtEnhetProvider>{children}</ValgtEnhetProvider>
-                                    </MeldingsokProvider>
-                                </VisittkortStateProvider>
-                            </DialogpanelStateProvider>
-                        </QueryClientProvider>
-                    </JProvider>
-                </Provider>
+                <JProvider store={jstore}>
+                    <QueryClientProvider client={queryClient}>
+                        <DialogpanelStateProvider>
+                            <VisittkortStateProvider>
+                                <MeldingsokProvider>
+                                    <ValgtEnhetProvider>{children}</ValgtEnhetProvider>
+                                </MeldingsokProvider>
+                            </VisittkortStateProvider>
+                        </DialogpanelStateProvider>
+                    </QueryClientProvider>
+                </JProvider>
             )
         })
     ]);
@@ -61,8 +51,8 @@ const setupTestRouter = (customStore: Props['customStore'], children: Props['chi
     });
 };
 
-export const renderWithProviders = async (children: ReactElement, customStore?: Props['customStore']) => {
-    const testRouter = setupTestRouter(customStore, children);
+export const renderWithProviders = async (children: ReactElement, fnr = aremark.personIdent) => {
+    const testRouter = setupTestRouter(fnr, children);
     const testRendered = render(<RouterProvider router={testRouter} />);
     await testRouter.load();
     return testRendered;

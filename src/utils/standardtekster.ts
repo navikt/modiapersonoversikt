@@ -1,6 +1,7 @@
 import { parseTekst } from '@navikt/tag-input';
-import type * as StandardTekster from './domain';
-import type { Tekster } from './domain';
+import type * as StandardTekster from 'src/lib/types/skrivestotte';
+import type { AutofullforMap, Tekster } from 'src/lib/types/skrivestotte';
+import { loggEvent, loggWarning } from 'src/utils/logger/frontendLogger';
 
 export function rapporterBruk(tekst: StandardTekster.Tekst): void {
     fetch(`${import.meta.env.BASE_URL}/proxy/modia-skrivestotte/skrivestotte/statistikk/${tekst.id}`, {
@@ -42,4 +43,22 @@ export function erGyldigValg(tekst: StandardTekster.Tekst | undefined, locale: s
     }
     const locales = Object.keys(tekst.innhold);
     return locales.includes(locale);
+}
+
+const isAutofullforKey = (key: string, autofullforMap: AutofullforMap): key is keyof AutofullforMap => {
+    const keys = Object.keys(autofullforMap);
+
+    return keys.includes(key);
+};
+
+export function autofullfor(tekst: string, autofullforMap: AutofullforMap): string {
+    return tekst.replace(/\[(.*?)\]/g, (_fullmatch, key: string) => {
+        if (!isAutofullforKey(key, autofullforMap)) {
+            loggWarning(new Error(`Standardtekster::autofullfor Fant ikke nøkkel: ${key}`));
+            loggEvent('manglendeNokkel', 'autofullfør', { nøkkel: key });
+            return '[ukjent nøkkel]';
+        }
+
+        return autofullforMap[key] || '[fant ingen verdi]';
+    });
 }

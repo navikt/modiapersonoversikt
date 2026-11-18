@@ -10,8 +10,8 @@ import {
     PersonStatus,
     SivilstandType,
     Skifteform
-} from '../../app/personside/visittkort-v2/PersondataDomain';
-import { harDiskresjonskode } from '../../app/personside/visittkort-v2/visittkort-utils';
+} from 'src/models/person/persondata';
+import { harDiskresjonskode } from 'src/utils/persondata-utils';
 import { FullmaktEndringHendelse, FullmaktEndringKilde, OppholdType } from '../../generated/modiapersonoversikt-api';
 
 function hentBarnAremark(): ForelderBarnRelasjon[] {

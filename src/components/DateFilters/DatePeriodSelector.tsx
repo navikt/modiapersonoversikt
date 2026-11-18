@@ -2,8 +2,8 @@ import { XMarkIcon } from '@navikt/aksel-icons';
 import { Box, Button, Radio, RadioGroup, VStack } from '@navikt/ds-react';
 import dayjs from 'dayjs';
 import { useCallback, useEffect, useState } from 'react';
-import { useOpenTab } from 'src/app/personside/infotabs/utils/useOpenTab';
 import CustomDatePickerModal from 'src/components/DateFilters/CustomDatePickerModal';
+import { useOpenTab } from 'src/lib/hooks/useOpenTab';
 import { filterType, trackFilterEndret } from 'src/utils/analytics';
 import { type DateRange, PeriodType } from './types';
 

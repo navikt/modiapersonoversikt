@@ -4,8 +4,7 @@ import { INNSTILLINGER_KEY_SAKSBEHANDLER_NAVN, useInnstillinger } from 'src/lib/
 import { useEnheter, useInnloggetSaksbehandler, usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
 import { aktivEnhetAtom } from 'src/lib/state/context';
 import { Kjonn, type PersonData } from 'src/lib/types/modiapersonoversikt-api';
-import { Locale } from 'src/lib/types/skrivestotte';
-import { loggEvent, loggWarning } from 'src/utils/logger/frontendLogger';
+import { type AutofullforMap, Locale } from 'src/lib/types/skrivestotte';
 import { capitalizeName } from 'src/utils/string-utils';
 import { hentNavn } from '../PersonLinje/utils';
 
@@ -14,20 +13,6 @@ export type AutofullforData = {
     person?: PersonData;
     saksbehandler?: Me;
     egendefinertSaksbehandlerNavn?: string;
-};
-
-type AutofullforMap = {
-    'bruker.fnr': string;
-    'bruker.fornavn': string;
-    'bruker.etternavn': string;
-    'bruker.navn': string;
-    'bruker.navkontor': string;
-    'bruker.subjekt': string;
-    'bruker.objekt': string;
-    'saksbehandler.fornavn': string;
-    'saksbehandler.etternavn': string;
-    'saksbehandler.navn': string;
-    'saksbehandler.enhet': string;
 };
 
 const subjectPronomenMap = {
@@ -102,24 +87,6 @@ export function byggAutofullforMap(
         'saksbehandler.etternavn': saksbehandler?.etternavn || '[saksbehandler.etternavn]',
         'saksbehandler.navn': egendefinertSaksbehandlerNavn?.trim() || saksbehandler?.navn || '[saksbehandler.navn]'
     };
-}
-
-const isAutofullforKey = (key: string, autofullforMap: AutofullforMap): key is keyof AutofullforMap => {
-    const keys = Object.keys(autofullforMap);
-
-    return keys.includes(key);
-};
-
-export function autofullfor(tekst: string, autofullforMap: AutofullforMap): string {
-    return tekst.replace(/\[(.*?)\]/g, (_fullmatch, key: string) => {
-        if (!isAutofullforKey(key, autofullforMap)) {
-            loggWarning(new Error(`Standardtekster::autofullfor Fant ikke nøkkel: ${key}`));
-            loggEvent('manglendeNokkel', 'autofullfør', { nøkkel: key });
-            return '[ukjent nøkkel]';
-        }
-
-        return autofullforMap[key] || '[fant ingen verdi]';
-    });
 }
 
 export function useAutoFullforData() {

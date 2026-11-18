@@ -2,7 +2,7 @@ import dayjs from 'dayjs';
 import { merge } from 'lodash';
 import { guid } from 'nav-frontend-js-utils';
 import type { JournalforingSak } from 'src/generated/modiapersonoversikt-api';
-import { nyesteMelding } from '../../app/personside/infotabs/meldinger/utils/meldingerUtils';
+import { nyesteMelding } from 'src/utils/meldinger-utils';
 import {
     LestStatus,
     type Melding,

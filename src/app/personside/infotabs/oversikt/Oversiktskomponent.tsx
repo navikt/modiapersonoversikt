@@ -4,12 +4,12 @@ import Panel from 'nav-frontend-paneler';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import * as React from 'react';
 import { type ReactNode, useRef, useState } from 'react';
-import type { InfotabConfig } from 'src/app/personside/infotabs/InfoTabEnum';
-import { getOpenTabFromRouterPath } from 'src/app/personside/infotabs/utils/useOpenTab';
-import { paths } from 'src/app/routes/routing';
 import ErrorBoundary from 'src/components/ErrorBoundary';
+import { getOpenTabFromRouterPath } from 'src/lib/hooks/useOpenTab';
+import type { InfotabConfig } from 'src/models/infotabs';
 import theme, { pxToRem } from 'src/styles/personOversiktTheme';
 import { trackGenereltUmamiEvent, trackingEvents } from 'src/utils/analytics';
+import { paths } from 'src/utils/paths';
 import styled from 'styled-components';
 
 interface Props {

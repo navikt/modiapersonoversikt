@@ -17,7 +17,7 @@ vi.mock('src/lib/clients/modiapersonoversikt-api', () => ({
     usePersonData: () => ({ data: { person, feilendeSystemer } })
 }));
 
-vi.mock('src/app/brukerprofil/useUrlNyPersonforvalter', () => ({
+vi.mock('src/lib/hooks/useUrlNyPersonforvalter', () => ({
     default: () => 'https://pdl-web.test.nav.no/?aktoerId=123'
 }));
 

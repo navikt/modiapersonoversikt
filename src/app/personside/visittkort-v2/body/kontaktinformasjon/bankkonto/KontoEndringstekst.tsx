@@ -1,6 +1,6 @@
+import type { SistEndret } from 'src/models/person/persondata';
 import EtikettGraa from '../../../../../../components/EtikettGraa';
 import { formaterDato } from '../../../../../../utils/string-utils';
-import type { SistEndret } from '../../../PersondataDomain';
 
 interface Props {
     sistEndret: SistEndret | null;

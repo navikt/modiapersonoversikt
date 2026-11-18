@@ -15,12 +15,12 @@ import { Bleed, Box, Button, Heading, HStack, Tag, Tooltip, VStack } from '@navi
 import { Link } from '@tanstack/react-router';
 import { useAtom } from 'jotai';
 import { type ComponentProps, type KeyboardEvent, type ReactElement, useRef } from 'react';
-import { getOpenTabFromRouterPath, useOpenTab } from 'src/app/personside/infotabs/utils/useOpenTab';
 import { FeatureToggles } from 'src/components/featureToggle/toggleIDs';
 import useFeatureToggle from 'src/components/featureToggle/useFeatureToggle';
 import { erUbesvartHenvendelseFraBruker, useTraader } from 'src/components/Meldinger/List/utils';
 import { usePersonSideBarKotkeys } from 'src/components/usePersonSidebarHotkeys';
 import { usePersonOppgaver } from 'src/lib/clients/modiapersonoversikt-api';
+import { getOpenTabFromRouterPath, useOpenTab } from 'src/lib/hooks/useOpenTab';
 import { ekspanderSidebarAtom } from 'src/lib/state/dialog';
 import { trackFaneEndret } from 'src/utils/analytics';
 import { twMerge } from 'tailwind-merge';

@@ -2,11 +2,11 @@ import { guid } from 'nav-frontend-js-utils';
 import type { Rule } from 'nav-frontend-tekstomrade';
 import { Element } from 'nav-frontend-typografi';
 import { useRef, useState } from 'react';
+import type * as StandardTekster from 'src/lib/types/skrivestotte';
 import styled from 'styled-components';
 import { LenkeKnapp } from '../../../../../../components/common-styled-components';
 import theme, { pxToRem } from '../../../../../../styles/personOversiktTheme';
 import type { FieldState } from '../../../../../../utils/hooks/use-field-state';
-import type * as StandardTekster from '../domain';
 import TekstListeElement from './TekstListeElement';
 
 interface Props {

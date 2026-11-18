@@ -1,6 +1,7 @@
 import type { Me } from 'src/generated/modiapersonoversikt-api';
+import { autofullfor } from 'src/utils/standardtekster';
 import { describe, expect, it } from 'vitest';
-import { autofullfor, byggAutofullforMap } from './autocompleteUtils';
+import { byggAutofullforMap } from './autocompleteUtils';
 
 const saksbehandler: Me = {
     ident: 'Z999999',

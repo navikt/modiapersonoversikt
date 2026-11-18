@@ -1,16 +1,14 @@
-import { ENDASH, formaterDato } from 'src/utils/string-utils';
 import {
-    AdresseBeskyttelse,
     type Dodsdato,
     type ForelderBarnRelasjon,
     ForelderBarnRelasjonRolle,
-    type KodeBeskrivelse,
     type LocalDate,
     type Navn,
     type PersonMedAlderOgDodsdato,
     type Sivilstand,
     SivilstandType
-} from './PersondataDomain';
+} from 'src/models/person/persondata';
+import { ENDASH, formaterDato } from 'src/utils/string-utils';
 
 export function erDod(dodsdato: Array<LocalDate> | Array<Dodsdato>) {
     return dodsdato.isNotEmpty();
@@ -34,15 +32,6 @@ export function hentForeldre(relasjoner: ForelderBarnRelasjon[]) {
             relasjon.rolle === ForelderBarnRelasjonRolle.FAR ||
             relasjon.rolle === ForelderBarnRelasjonRolle.MOR ||
             relasjon.rolle === ForelderBarnRelasjonRolle.MEDMOR
-    );
-}
-
-export function harDiskresjonskode(adressebeskyttelse: KodeBeskrivelse<AdresseBeskyttelse>[]) {
-    return adressebeskyttelse.some(
-        (beskyttelse) =>
-            beskyttelse.kode === AdresseBeskyttelse.KODE6 ||
-            beskyttelse.kode === AdresseBeskyttelse.KODE6_UTLAND ||
-            beskyttelse.kode === AdresseBeskyttelse.KODE7
     );
 }
 

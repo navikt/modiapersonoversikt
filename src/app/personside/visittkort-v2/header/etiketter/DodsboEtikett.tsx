@@ -1,5 +1,5 @@
 import EtikettBase from 'nav-frontend-etiketter';
-import type { Dodsbo } from '../../PersondataDomain';
+import type { Dodsbo } from 'src/models/person/persondata';
 
 interface Props {
     dodsbo: Dodsbo[];
