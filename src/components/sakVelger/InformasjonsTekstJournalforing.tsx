@@ -12,7 +12,7 @@ export const InformasjonsTekstJournalforing = ({ traad }: { traad?: Traad }) => 
     const traadAvsluttetIdag = avsluttetDato && dayjs(avsluttetDato).isSame(dayjs().toDate(), 'day');
     const journalposter = traad?.journalposter;
 
-    const visAdvarselOmAutomatiskJournalforing = traadAvsluttetIdag && journalposter?.length;
+    const visAdvarselOmAutomatiskJournalforing = !!(traadAvsluttetIdag && journalposter?.length) satisfies boolean;
 
     const journalfortSakerTekst = useMemo(() => {
         const saksbeskrivelser = (journalposter ?? []).map(
