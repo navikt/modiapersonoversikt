@@ -91,7 +91,8 @@ export const useSendMelding = () => {
                 queryKey: $api.queryOptions('post', '/rest/dialog/meldinger', {
                     body: { fnr: body.fnr },
                     params: { query: { enhet: body.enhet } }
-                }).queryKey
+                }).queryKey,
+                refetchType: 'all'
             });
             queryClient.invalidateQueries({
                 queryKey: $api.queryOptions('post', '/rest/oppgaver/tildelt', {
@@ -118,6 +119,13 @@ export const useSendMelding = () => {
         },
         onError: (error: unknown, { body }) => {
             if (body.traadType === SendMeldingRequestV2TraadType.SAMTALEREFERAT && body.sak && !body.traadId) {
+                queryClient.invalidateQueries({
+                    queryKey: $api.queryOptions('post', '/rest/dialog/meldinger', {
+                        body: { fnr: body.fnr },
+                        params: { query: { enhet: body.enhet } }
+                    }).queryKey,
+                    refetchType: 'all'
+                });
                 if (store.get(aktivBrukerAtom) !== body.fnr || store.get(aktivEnhetAtom) !== body.enhet) return;
                 const avvist = error instanceof FetchError && error.response.status < 500;
                 setReferatResultat({
@@ -127,12 +135,6 @@ export const useSendMelding = () => {
                     melding: avvist
                         ? 'Kunne ikke sende referatet. Kontroller teksten, temagruppen og valgt sak.'
                         : 'Vi kunne ikke bekrefte om referatet ble sendt og journalført. Kontroller meldingslisten før du sender på nytt.'
-                });
-                queryClient.invalidateQueries({
-                    queryKey: $api.queryOptions('post', '/rest/dialog/meldinger', {
-                        body: { fnr: body.fnr },
-                        params: { query: { enhet: body.enhet } }
-                    }).queryKey
                 });
                 return;
             }

@@ -1,7 +1,8 @@
 import { NotePencilIcon } from '@navikt/aksel-icons';
 import { BodyLong, Button, Dialog, HStack } from '@navikt/ds-react';
-import { useAtom, useAtomValue } from 'jotai';
+import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { useRef, useState } from 'react';
+import { referatResultatAtom } from 'src/components/melding/MeldingPanel';
 import { draftAtom, nyMeldingUnderArbeidAtom, svarUnderArbeidAtom } from 'src/lib/state/dialog';
 import { trackGenereltUmamiEvent, trackingEvents } from 'src/utils/analytics';
 
@@ -11,8 +12,10 @@ export const SkrivNyMeldingKnapp = () => {
     const [nyMeldingUnderArbeid, setNyMeldingUnderArbeid] = useAtom(nyMeldingUnderArbeidAtom);
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const draft = useAtomValue(draftAtom);
+    const setReferatResultat = useSetAtom(referatResultatAtom);
 
     const handleStartNyMelding = () => {
+        setReferatResultat(null);
         setSvarUnderArbeid(undefined);
         setNyMeldingUnderArbeid(true);
         trackGenereltUmamiEvent(trackingEvents.startNyMelding);

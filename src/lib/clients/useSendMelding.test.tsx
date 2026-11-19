@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { act, renderHook } from '@testing-library/react';
+import { act, renderHook, waitFor } from '@testing-library/react';
 import { createStore, Provider } from 'jotai';
 import { HttpResponse, http } from 'msw';
 import type { PropsWithChildren } from 'react';
@@ -8,7 +8,7 @@ import { dialogSuksessMeldingAtom, referatResultatAtom } from 'src/components/me
 import { type SendMeldingRequestV2, SendMeldingRequestV2TraadType } from 'src/generated/modiapersonoversikt-api';
 import { aktivBrukerAtom, aktivEnhetAtom } from 'src/lib/state/context';
 import { server } from 'src/mock/node';
-import { useSendMelding } from './modiapersonoversikt-api';
+import { $api, useSendMelding } from './modiapersonoversikt-api';
 
 const body: SendMeldingRequestV2 = {
     fnr: '00000000000',
@@ -23,13 +23,15 @@ function renderMutation() {
     const store = createStore();
     store.set(aktivBrukerAtom, body.fnr);
     store.set(aktivEnhetAtom, body.enhet);
-    const queryClient = new QueryClient();
+    const queryClient = new QueryClient({
+        defaultOptions: { queries: { refetchOnMount: false, retry: false } }
+    });
     const wrapper = ({ children }: PropsWithChildren) => (
         <Provider store={store}>
             <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
         </Provider>
     );
-    return { ...renderHook(() => useSendMelding(), { wrapper }), store };
+    return { ...renderHook(() => useSendMelding(), { wrapper }), store, queryClient };
 }
 
 describe('sende og journalføre referat', () => {
@@ -129,5 +131,61 @@ describe('sende og journalføre referat', () => {
 
         expect(store.get(referatResultatAtom)).toBeNull();
         expect(store.get(dialogSuksessMeldingAtom)).toBe('Melding sendt');
+    });
+
+    test.each([
+        { status: 200, kontekst: 'person' },
+        { status: 504, kontekst: 'person' },
+        { status: 200, kontekst: 'enhet' },
+        { status: 504, kontekst: 'enhet' }
+    ])('henter inaktiv meldingsliste på nytt ved $status etter bytte av $kontekst', async ({ status, kontekst }) => {
+        const mottatt = Promise.withResolvers<void>();
+        const fortsett = Promise.withResolvers<void>();
+        let antallHentinger = 0;
+        server.use(
+            http.post(`*${apiBaseUri}/dialog/meldinger`, async ({ request }) => {
+                expect(await request.json()).toEqual({ fnr: body.fnr });
+                expect(new URL(request.url).searchParams.get('enhet')).toBe(body.enhet);
+                antallHentinger++;
+                return HttpResponse.json({ traader: antallHentinger === 1 ? [] : [{ traadId: 'nytt-referat' }] });
+            }),
+            http.post(`*${apiBaseUri}/dialog/sendmelding`, async () => {
+                mottatt.resolve();
+                await fortsett.promise;
+                return status === 504
+                    ? new HttpResponse(null, { status })
+                    : HttpResponse.json({ traadId: 'nytt-referat', journalforingFeilet: false });
+            })
+        );
+        const { result, store, queryClient } = renderMutation();
+        const options = $api.queryOptions('post', '/rest/dialog/meldinger', {
+            body: { fnr: body.fnr },
+            params: { query: { enhet: body.enhet } }
+        });
+        await queryClient.fetchQuery(options);
+        expect(queryClient.getQueryState(options.queryKey)?.data).toEqual({ traader: [] });
+
+        await act(async () => {
+            const sending = result.current.mutateAsync({ body });
+            await mottatt.promise;
+            if (kontekst === 'person') {
+                store.set(aktivBrukerAtom, '11111111111');
+            } else {
+                store.set(aktivEnhetAtom, '0202');
+            }
+            fortsett.resolve();
+            if (status === 504) {
+                await expect(sending).rejects.toThrow();
+            } else {
+                await sending;
+            }
+        });
+
+        await waitFor(() =>
+            expect(queryClient.getQueryData(options.queryKey)).toEqual({ traader: [{ traadId: 'nytt-referat' }] })
+        );
+        expect(antallHentinger).toBe(2);
+        expect(store.get(referatResultatAtom)).toBeNull();
+        expect(store.get(dialogSuksessMeldingAtom)).toBeNull();
     });
 });
