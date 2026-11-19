@@ -1,7 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import type { Skjulingsaarsak } from 'src/components/PersonLinje/skjulingsaarsak';
-import type { Tilgangsavslag } from 'src/lib/types/modiapersonoversikt-api';
+import { Skjulingsaarsak, type Tilgangsavslag } from 'src/lib/types/modiapersonoversikt-api';
 import { aremark } from 'src/mock/persondata/aremark';
 import ForelderBarnRelasjonVisning from './body/familie/ForelderBarnRelasjon';
 import Sivilstand from './body/familie/Sivilstand';
@@ -12,12 +11,12 @@ import Vergemal from './body/vergemal/Vergemal';
 import { type ForelderBarnRelasjon, InformasjonElement, SivilstandType } from './PersondataDomain';
 
 const aarsaker: [Skjulingsaarsak, string][] = [
-    ['MANGLER_TILGANG', 'Personopplysninger skjult'],
-    ['UAVKLART', 'Personopplysninger kunne ikke hentes']
+    [Skjulingsaarsak.MANGLER_TILGANG, 'Personopplysninger skjult'],
+    [Skjulingsaarsak.UAVKLART, 'Personopplysninger kunne ikke hentes']
 ];
 
 const detaljertAvslag: [Skjulingsaarsak, string, Tilgangsavslag] = [
-    'MANGLER_TILGANG',
+    Skjulingsaarsak.MANGLER_TILGANG,
     'Personopplysninger er skjult: Du har ikke tilgang på grunn av habilitet',
     { title: 'AVVIST_HABILITET', message: 'Du har ikke tilgang på grunn av habilitet' }
 ];

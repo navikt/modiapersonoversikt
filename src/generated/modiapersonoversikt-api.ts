@@ -1329,14 +1329,14 @@ export interface components {
         LocalDate: {
             /** Format: date */
             value?: string;
-            /** Format: date */
-            value$kotlinx_datetime: string;
             /**
              * Format: int32
              * @deprecated
              * @description Use the 'month' property instead
              */
             monthNumber: number;
+            /** Format: date */
+            value$kotlinx_datetime: string;
             /** Format: int32 */
             year: number;
             /**
@@ -1357,8 +1357,6 @@ export interface components {
         LocalDateTime: {
             /** Format: date-time */
             value?: string;
-            /** Format: date-time */
-            value$kotlinx_datetime: string;
             /**
              * Format: int32
              * @deprecated
@@ -1367,6 +1365,8 @@ export interface components {
             monthNumber: number;
             /** Format: int32 */
             nanosecond: number;
+            /** Format: date-time */
+            value$kotlinx_datetime: string;
             time: components["schemas"]["LocalTime"];
             /** Format: int32 */
             year: number;
@@ -1393,10 +1393,12 @@ export interface components {
             day: number;
         };
         LocalTime: {
+            /** Format: time-local */
             value?: string;
-            value$kotlinx_datetime: string;
             /** Format: int32 */
             nanosecond: number;
+            /** Format: time-local */
+            value$kotlinx_datetime: string;
             /** Format: int32 */
             hour: number;
             /** Format: int32 */
@@ -1579,8 +1581,6 @@ export interface components {
             fodested?: string | null;
         };
         ForelderBarnRelasjon: {
-            skjulingsaarsak?: "MANGLER_TILGANG" | "UAVKLART" | null;
-            tilgangsavslag?: components["schemas"]["Tilgangsavslag"] | null;
             ident?: string | null;
             /** @enum {string} */
             rolle: ForelderBarnRelasjonRolle;
@@ -1592,6 +1592,8 @@ export interface components {
             adressebeskyttelse: components["schemas"]["KodeBeskrivelseAdresseBeskyttelse"][];
             harSammeAdresse?: boolean | null;
             dodsdato: string[];
+            skjulingsaarsak?: components["schemas"]["Skjulingsaarsak"] | null;
+            tilgangsavslag?: components["schemas"]["Tilgangsavslag"] | null;
         };
         Foreldreansvar: {
             ansvar: string;
@@ -1628,13 +1630,24 @@ export interface components {
             leserettigheter: components["schemas"]["KodeBeskrivelseString"][];
             skriverettigheter: components["schemas"]["KodeBeskrivelseString"][];
         };
+        Fullmaktsoppdrag: {
+            /** Format: uuid */
+            id: string;
+            person: components["schemas"]["RepresentertPerson"];
+            /** Format: date */
+            gyldigFraOgMed: string;
+            /** Format: date */
+            gyldigTilOgMed?: string | null;
+            leserettigheter: components["schemas"]["KodeBeskrivelseString"][];
+            skriverettigheter: components["schemas"]["KodeBeskrivelseString"][];
+        };
         Fullmektig: {
-            skjulingsaarsak?: "MANGLER_TILGANG" | "UAVKLART" | null;
-            tilgangsavslag?: components["schemas"]["Tilgangsavslag"] | null;
             ident: string;
             navn?: components["schemas"]["Navn"] | null;
             digitalKontaktinformasjonTredjepartsperson?: components["schemas"]["DigitalKontaktinformasjonTredjepartsperson"] | null;
             fullmakt: components["schemas"]["Fullmakt"];
+            skjulingsaarsak?: components["schemas"]["Skjulingsaarsak"] | null;
+            tilgangsavslag?: components["schemas"]["Tilgangsavslag"] | null;
         };
         GyldighetsPeriode: {
             /** Format: date */
@@ -1683,10 +1696,10 @@ export interface components {
             etternavn: string;
         };
         NavnOgIdent: {
-            skjulingsaarsak?: "MANGLER_TILGANG" | "UAVKLART" | null;
-            tilgangsavslag?: components["schemas"]["Tilgangsavslag"] | null;
             navn?: components["schemas"]["Navn"] | null;
             ident?: string | null;
+            skjulingsaarsak?: components["schemas"]["Skjulingsaarsak"] | null;
+            tilgangsavslag?: components["schemas"]["Tilgangsavslag"] | null;
         };
         Opphold: {
             /** @enum {string} */
@@ -1728,6 +1741,9 @@ export interface components {
             deltBosted: components["schemas"]["DeltBosted"][];
             dodsbo: components["schemas"]["Dodsbo"][];
             fullmektige: components["schemas"]["Fullmektig"][];
+            fullmaktsgivere: components["schemas"]["Fullmaktsoppdrag"][];
+            vergehavere: components["schemas"]["Vergeoppdrag"][];
+            fullmakt: components["schemas"]["Fullmakt"][];
             vergemal: components["schemas"]["Verge"][];
             historiskeVergemal: components["schemas"]["Verge"][];
             tilrettelagtKommunikasjon: components["schemas"]["TilrettelagtKommunikasjon"];
@@ -1748,16 +1764,22 @@ export interface components {
             epost?: string | null;
         };
         PersonSomAdressat: {
-            skjulingsaarsak?: "MANGLER_TILGANG" | "UAVKLART" | null;
-            tilgangsavslag?: components["schemas"]["Tilgangsavslag"] | null;
             fnr?: string | null;
             navn: components["schemas"]["Navn"][];
             /** Format: date */
             fodselsdato?: string | null;
+            skjulingsaarsak?: components["schemas"]["Skjulingsaarsak"] | null;
+            tilgangsavslag?: components["schemas"]["Tilgangsavslag"] | null;
         };
         Publikumsmottak: {
             besoksadresse: components["schemas"]["Adresse"];
             apningstider: components["schemas"]["Apningstid"][];
+        };
+        RepresentertPerson: {
+            ident?: string | null;
+            navn?: components["schemas"]["Navn"] | null;
+            skjulingsaarsak?: components["schemas"]["Skjulingsaarsak"] | null;
+            tilgangsavslag?: components["schemas"]["Tilgangsavslag"] | null;
         };
         RettsligHandleevne: {
             omfang?: string | null;
@@ -1782,8 +1804,6 @@ export interface components {
             sivilstandRelasjon?: components["schemas"]["SivilstandRelasjon"] | null;
         };
         SivilstandRelasjon: {
-            skjulingsaarsak?: "MANGLER_TILGANG" | "UAVKLART" | null;
-            tilgangsavslag?: components["schemas"]["Tilgangsavslag"] | null;
             fnr: string;
             navn: components["schemas"]["Navn"][];
             /** Format: int32 */
@@ -1791,7 +1811,11 @@ export interface components {
             adressebeskyttelse: components["schemas"]["KodeBeskrivelseAdresseBeskyttelse"][];
             harSammeAdresse?: boolean | null;
             dodsdato: string[];
+            skjulingsaarsak?: components["schemas"]["Skjulingsaarsak"] | null;
+            tilgangsavslag?: components["schemas"]["Tilgangsavslag"] | null;
         };
+        /** @enum {string} */
+        Skjulingsaarsak: Skjulingsaarsak;
         Statsborgerskap: {
             land: components["schemas"]["KodeBeskrivelseString"];
             gyldighetsPeriode?: components["schemas"]["GyldighetsPeriode"] | null;
@@ -1833,8 +1857,6 @@ export interface components {
             sistVerifisert?: string | null;
         };
         Verge: {
-            skjulingsaarsak?: "MANGLER_TILGANG" | "UAVKLART" | null;
-            tilgangsavslag?: components["schemas"]["Tilgangsavslag"] | null;
             ident?: string | null;
             navn?: components["schemas"]["Navn"] | null;
             vergesakstype: string;
@@ -1843,6 +1865,19 @@ export interface components {
             embete?: string | null;
             gyldighetsPeriode?: components["schemas"]["GyldighetsPeriode"] | null;
             historisk: boolean;
+            skjulingsaarsak?: components["schemas"]["Skjulingsaarsak"] | null;
+            tilgangsavslag?: components["schemas"]["Tilgangsavslag"] | null;
+        };
+        Vergeoppdrag: {
+            /** Format: int32 */
+            id: number;
+            person: components["schemas"]["RepresentertPerson"];
+            /** Format: date */
+            gyldigFraOgMed: string;
+            aktivt: boolean;
+            vergemaalstype: string;
+            leserettigheter: components["schemas"]["KodeBeskrivelseString"][];
+            skriverettigheter: components["schemas"]["KodeBeskrivelseString"][];
         };
         IdentInformasjon: {
             ident: string;
@@ -2161,19 +2196,19 @@ export interface components {
             boost?: number | null;
         };
         GraphQLClientError: {
+            locations?: components["schemas"]["GraphQLClientSourceLocation"][] | null;
             message: string;
             path?: unknown[] | null;
             extensions?: {
                 [key: string]: unknown;
             } | null;
-            locations?: components["schemas"]["GraphQLClientSourceLocation"][] | null;
         };
         GraphQLClientResponseResult: {
+            errors?: components["schemas"]["GraphQLClientError"][] | null;
             extensions?: {
                 [key: string]: unknown;
             } | null;
             data?: components["schemas"]["Result"] | null;
-            errors?: components["schemas"]["GraphQLClientError"][] | null;
         };
         GraphQLClientSourceLocation: {
             /** Format: int32 */
@@ -2529,6 +2564,7 @@ export type ForelderBarnRelasjon = components['schemas']['ForelderBarnRelasjon']
 export type Foreldreansvar = components['schemas']['Foreldreansvar'];
 export type Fullmakt = components['schemas']['Fullmakt'];
 export type FullmaktEndring = components['schemas']['FullmaktEndring'];
+export type Fullmaktsoppdrag = components['schemas']['Fullmaktsoppdrag'];
 export type Fullmektig = components['schemas']['Fullmektig'];
 export type GyldighetsPeriode = components['schemas']['GyldighetsPeriode'];
 export type InnflyttingTilNorge = components['schemas']['InnflyttingTilNorge'];
@@ -2546,6 +2582,7 @@ export type Person = components['schemas']['Person'];
 export type PersonDataEnhet = components['schemas']['PersonDataEnhet'];
 export type PersonSomAdressat = components['schemas']['PersonSomAdressat'];
 export type Publikumsmottak = components['schemas']['Publikumsmottak'];
+export type RepresentertPerson = components['schemas']['RepresentertPerson'];
 export type RettsligHandleevne = components['schemas']['RettsligHandleevne'];
 export type Sikkerhetstiltak = components['schemas']['Sikkerhetstiltak'];
 export type SistEndret = components['schemas']['SistEndret'];
@@ -2559,6 +2596,7 @@ export type UtflyttingFraNorge = components['schemas']['UtflyttingFraNorge'];
 export type VerdiBoolean = components['schemas']['VerdiBoolean'];
 export type VerdiString = components['schemas']['VerdiString'];
 export type Verge = components['schemas']['Verge'];
+export type Vergeoppdrag = components['schemas']['Vergeoppdrag'];
 export type IdentInformasjon = components['schemas']['IdentInformasjon'];
 export type Identliste = components['schemas']['Identliste'];
 export type OppgaveDto = components['schemas']['OppgaveDTO'];
@@ -4136,7 +4174,9 @@ export enum DataFeilendeSystemer {
     VEILEDER_ROLLER = "VEILEDER_ROLLER",
     NORG_NAVKONTOR = "NORG_NAVKONTOR",
     NORG_KONTAKTINFORMASJON = "NORG_KONTAKTINFORMASJON",
-    REPR_API = "REPR_API"
+    REPR_API = "REPR_API",
+    REPR_API_FULLMAKTSGIVERE = "REPR_API_FULLMAKTSGIVERE",
+    REPR_API_VERGEHAVERE = "REPR_API_VERGEHAVERE"
 }
 export enum DodsboSkifteform {
     OFFENTLIG = "OFFENTLIG",
@@ -4207,6 +4247,10 @@ export enum PersonErEgenAnsatt {
     JA = "JA",
     NEI = "NEI",
     UKJENT = "UKJENT"
+}
+export enum Skjulingsaarsak {
+    MANGLER_TILGANG = "MANGLER_TILGANG",
+    UAVKLART = "UAVKLART"
 }
 export enum IdentInformasjonGruppe {
     AKTORID = "AKTORID",

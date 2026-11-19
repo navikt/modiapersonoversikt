@@ -1,5 +1,5 @@
 import type { Skjulingsaarsak } from 'src/components/PersonLinje/skjulingsaarsak';
-import type { Fullmektig, Tilgangsavslag } from 'src/lib/types/modiapersonoversikt-api';
+import type { Fullmaktsoppdrag, Fullmektig, Tilgangsavslag, Vergeoppdrag } from 'src/lib/types/modiapersonoversikt-api';
 
 export interface Data {
     feilendeSystemer: Array<InformasjonElement>;
@@ -33,6 +33,8 @@ export interface Person extends PersonMedAlderOgDodsdato {
     deltBosted: Array<DeltBosted>;
     dodsbo: Array<Dodsbo>;
     fullmektige: Array<Fullmektig>;
+    fullmaktsgivere: Array<Fullmaktsoppdrag>;
+    vergehavere: Array<Vergeoppdrag>;
     vergemal: Array<Verge>;
     historiskeVergemal: Array<Verge>;
     tilrettelagtKommunikasjon: TilrettelagtKommunikasjon;
@@ -348,5 +350,7 @@ export enum InformasjonElement {
     VEILEDER_ROLLER = 'VEILEDER_ROLLER',
     NORG_NAVKONTOR = 'NORG_NAVKONTOR',
     NORG_KONTAKTINFORMASJON = 'NORG_KONTAKTINFORMASJON',
-    REPR_API = 'REPR_API'
+    REPR_API = 'REPR_API',
+    REPR_API_FULLMAKTSGIVERE = 'REPR_API_FULLMAKTSGIVERE',
+    REPR_API_VERGEHAVERE = 'REPR_API_VERGEHAVERE'
 }
