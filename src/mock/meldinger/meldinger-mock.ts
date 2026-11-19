@@ -137,6 +137,7 @@ function getMelding(temagruppe: Temagruppe | null): Melding {
         opprettetDato: dayjs(faker.date.recent({ days: 40 })).format(backendDatoTidformat),
         ferdigstiltDato: dayjs(faker.date.recent({ days: 40 })).format(backendDatoTidformat),
         sendtTilSladding: sladdingNiva !== 0,
+        sladdet: /\*{3,}/.test(fritekst),
         markertSomFeilsendtAv: visMarkertSomFeilsendt ? getSaksbehandler() : undefined
     };
 }

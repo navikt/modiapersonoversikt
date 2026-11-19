@@ -26,6 +26,7 @@ export interface Melding {
     ferdigstiltDato?: string;
     avsluttetDato?: string;
     sendtTilSladding: boolean;
+    sladdet?: boolean;
     markertSomFeilsendtAv?: Saksbehandler;
 }
 
