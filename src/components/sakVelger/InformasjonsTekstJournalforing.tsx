@@ -44,7 +44,7 @@ export const InformasjonsTekstJournalforing = ({ traad }: { traad?: Traad }) => 
                     må du huske å manuelt legge til sak for at det skal journalføres.
                 </BodyLong>
             </ReadMore>
-            {visAdvarselOmAutomatiskJournalforing && (
+            {visAdvarselOmAutomatiskJournalforing && journalposter && (
                 <InlineMessage size="small" status="warning">
                     <Bold>Automatisk journalføring iverksatt:</Bold> Denne tråden ble avsluttet i dag
                     {avsluttetDato ? ` (${formaterDato(avsluttetDato)})` : ''}. Det skjer en automatisk journalføring i

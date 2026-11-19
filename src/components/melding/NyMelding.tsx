@@ -8,6 +8,7 @@ import { AvbrytAlert } from 'src/components/melding/AvbrytAlert';
 import nyMeldingSchema, { maksLengdeMelding } from 'src/components/melding/nyMeldingSchema';
 import { Oppgaveliste } from 'src/components/melding/OppgavelisteOptions';
 import { SaksbehandlerNavnDialog } from 'src/components/melding/SaksbehandlerNavnDialog';
+import { SendOgJournalforModal } from 'src/components/melding/SendOgJournalforModal';
 import AutoCompleteTekstTips from 'src/components/melding/standardtekster/AutoCompleteTekstTips';
 import StandardTekstModal from 'src/components/melding/standardtekster/StandardTeksterModal';
 import { settInnStandardTekst } from 'src/components/melding/standardtekster/settInnStandardTekst';
@@ -31,6 +32,8 @@ import useDynamicHeightTextArea from 'src/utils/hooks/use-dynamic-height-text-ar
 import type { z } from 'zod';
 import AutocompleteTextarea from './AutoCompleteTextarea';
 
+const defaultSubmitMeta: { velgSak?: boolean; sak?: JournalforingSak } = {};
+
 function NyMelding() {
     const fnr = usePersonAtomValue();
     const enhetsId = useAtomValue(aktivEnhetAtom);
@@ -41,6 +44,8 @@ function NyMelding() {
     const minRows = useDynamicHeightTextArea();
 
     const { mutate, isPending } = useSendMelding();
+    const [visJournalforing, setVisJournalforing] = useState(false);
+    const sender = useRef(false);
 
     // Brukes for å sette initialverdien til meldingen basert på draften
     const [defaultMessage, setDefaultMessage] = useState('');
@@ -63,9 +68,19 @@ function NyMelding() {
         validators: {
             onSubmit: nyMeldingSchema
         },
-        onSubmit: ({ value }) => {
+        onSubmitMeta: defaultSubmitMeta,
+        onSubmit: ({ value, meta }) => {
+            if (disableDialog || sender.current) return;
+            if (meta.velgSak && value.meldingsType === MeldingsType.Referat) {
+                setVisJournalforing(true);
+                return;
+            }
             const body = generateRequestBody(value as NyMeldingSchema);
+            if (value.meldingsType === MeldingsType.Referat && meta.sak) {
+                body.sak = { ...meta.sak, fnr: undefined };
+            }
             if (meldingsType) trackSendNyMelding(meldingsTyperTekst[meldingsType].tittel.toLowerCase());
+            sender.current = true;
             mutate(
                 { body: body },
                 {
@@ -81,6 +96,9 @@ function NyMelding() {
                         );
                         setOverskridKontaktReservasjon(false);
                         setNyMeldingUnderArbeid(false);
+                    },
+                    onSettled: () => {
+                        sender.current = false;
                     }
                 }
             );
@@ -92,163 +110,193 @@ function NyMelding() {
     const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
     return (
-        <form
-            onSubmit={async (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                await form.handleSubmit();
-            }}
-        >
-            <VStack gap="space-16">
-                <form.Field name="meldingsType">
-                    {(field) => (
-                        <VelgMeldingsType
-                            error={
-                                field.state.meta.errors.length ? (
-                                    <ValidationErrorMessage errors={field.state.meta.errors} />
-                                ) : undefined
-                            }
-                            meldingsType={field.state.value}
-                            setMeldingsType={(meldingsType) => {
-                                form.reset({
-                                    ...defaultFormOptions,
-                                    melding: form.getFieldValue('melding'),
-                                    sak: meldingsType !== MeldingsType.Referat ? form.getFieldValue('sak') : undefined
-                                });
-                                field.handleChange(meldingsType);
-                            }}
-                        />
-                    )}
-                </form.Field>
-                <ValgForMeldingstype
-                    meldingsType={meldingsType}
-                    velgTema={
-                        <form.Field name="tema">
+        <>
+            <form
+                onSubmit={async (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    await form.handleSubmit();
+                }}
+            >
+                <fieldset disabled={isPending} className="min-w-0" aria-label="Ny melding">
+                    <VStack gap="space-16">
+                        <form.Field name="meldingsType">
                             {(field) => (
-                                <VelgTema
-                                    valgtTema={field.state.value}
-                                    setValgtTema={(tema) => field.handleChange(tema)}
+                                <VelgMeldingsType
                                     error={
                                         field.state.meta.errors.length ? (
                                             <ValidationErrorMessage errors={field.state.meta.errors} />
                                         ) : undefined
                                     }
-                                />
-                            )}
-                        </form.Field>
-                    }
-                    velgOppgaveliste={
-                        <form.Field name="oppgaveliste">
-                            {(field) => (
-                                <VelgOppgaveliste
-                                    valgtOppgaveliste={field.state.value}
-                                    setValgtOppgaveliste={(oppgaveliste) => field.handleChange(oppgaveliste)}
-                                />
-                            )}
-                        </form.Field>
-                    }
-                    velgSak={
-                        <form.Field name="sak">
-                            {(field) => (
-                                <VelgSak
-                                    valgtSak={field.state.value}
-                                    setSak={field.handleChange}
-                                    error={<ValidationErrorMessage errors={field.state.meta.errors} />}
-                                />
-                            )}
-                        </form.Field>
-                    }
-                />
-                <VStack gap="space-4">
-                    <form.Field
-                        name="melding"
-                        listeners={{
-                            onChange: ({ value }) => {
-                                if (value.length === 0) {
-                                    removeDraft();
-                                }
-                                if (value.length > 0) {
-                                    updateDraft(value);
-                                }
-                            }
-                        }}
-                    >
-                        {(field) => (
-                            <div>
-                                <Box height="30px">
-                                    {draftStatus &&
-                                        form.getFieldValue('melding').length > 0 &&
-                                        form.getFieldMeta('melding')?.isDirty && <DraftStatus state={draftStatus} />}
-                                </Box>
-                                <AutocompleteTextarea
-                                    disabled={disableDialog}
-                                    ref={textAreaRef}
-                                    label={meldingsTypeTekst?.tittel}
-                                    hideLabel
-                                    size="small"
-                                    value={field.state.value}
-                                    onChange={(e) => field.handleChange(e.target.value)}
-                                    error={buildErrorMessage(field.state.meta.errors)}
-                                    maxLength={maksLengdeMelding}
-                                    resize="vertical"
-                                    minRows={minRows}
-                                    maxRows={50}
-                                />
-                            </div>
-                        )}
-                    </form.Field>
-                    <Bleed
-                        marginBlock={{
-                            xs: 'space-0 space-0',
-                            md: disableDialog ? 'space-0 space-0' : 'space-20 space-0'
-                        }}
-                        asChild
-                    >
-                        <HStack gap="space-4" justify="end">
-                            <Box height="15px" width="100px" />
-                            <HStack justify="end" wrap={false}>
-                                <AutoCompleteTekstTips />
-                                <StandardTekstModal
-                                    textAreaRef={textAreaRef}
-                                    submitTekst={(standardTekst) =>
-                                        settInnStandardTekst(standardTekst, textAreaRef, (e) =>
-                                            form.setFieldValue('melding', e.target.value)
-                                        )
-                                    }
-                                />
-                                <SaksbehandlerNavnDialog />
-                            </HStack>
-                            <HStack
-                                justify="end"
-                                gap="space-8"
-                                align="center"
-                                flexGrow="1"
-                                maxWidth="fit-content"
-                                className="flex-row-reverse"
-                            >
-                                <Button
-                                    disabled={disableDialog || isPending}
-                                    type="submit"
-                                    size="small"
-                                    data-testid="svar-knapp"
-                                    loading={isPending}
-                                >
-                                    Send til {brukerNavn}
-                                </Button>
-                                <AvbrytAlert
-                                    disablePopup={form.getFieldValue('melding').length === 0}
-                                    handleAvbryt={() => {
-                                        removeDraft();
-                                        setNyMeldingUnderArbeid(false);
-                                        trackGenereltUmamiEvent(trackingEvents.avbrytMelding);
+                                    meldingsType={field.state.value}
+                                    setMeldingsType={(meldingsType) => {
+                                        form.reset({
+                                            ...defaultFormOptions,
+                                            melding: form.getFieldValue('melding'),
+                                            sak:
+                                                meldingsType !== MeldingsType.Referat
+                                                    ? form.getFieldValue('sak')
+                                                    : undefined
+                                        });
+                                        field.handleChange(meldingsType);
                                     }}
                                 />
-                            </HStack>
-                        </HStack>
-                    </Bleed>
-                </VStack>
-            </VStack>
-        </form>
+                            )}
+                        </form.Field>
+                        <ValgForMeldingstype
+                            meldingsType={meldingsType}
+                            velgTema={
+                                <form.Field name="tema">
+                                    {(field) => (
+                                        <VelgTema
+                                            valgtTema={field.state.value}
+                                            setValgtTema={(tema) => field.handleChange(tema)}
+                                            error={
+                                                field.state.meta.errors.length ? (
+                                                    <ValidationErrorMessage errors={field.state.meta.errors} />
+                                                ) : undefined
+                                            }
+                                        />
+                                    )}
+                                </form.Field>
+                            }
+                            velgOppgaveliste={
+                                <form.Field name="oppgaveliste">
+                                    {(field) => (
+                                        <VelgOppgaveliste
+                                            valgtOppgaveliste={field.state.value}
+                                            setValgtOppgaveliste={(oppgaveliste) => field.handleChange(oppgaveliste)}
+                                        />
+                                    )}
+                                </form.Field>
+                            }
+                            velgSak={
+                                <form.Field name="sak">
+                                    {(field) => (
+                                        <VelgSak
+                                            valgtSak={field.state.value}
+                                            setSak={field.handleChange}
+                                            error={<ValidationErrorMessage errors={field.state.meta.errors} />}
+                                        />
+                                    )}
+                                </form.Field>
+                            }
+                        />
+                        <VStack gap="space-4">
+                            <form.Field
+                                name="melding"
+                                listeners={{
+                                    onChange: ({ value }) => {
+                                        if (value.length === 0) {
+                                            removeDraft();
+                                        }
+                                        if (value.length > 0) {
+                                            updateDraft(value);
+                                        }
+                                    }
+                                }}
+                            >
+                                {(field) => (
+                                    <div>
+                                        <Box height="30px">
+                                            {draftStatus &&
+                                                form.getFieldValue('melding').length > 0 &&
+                                                form.getFieldMeta('melding')?.isDirty && (
+                                                    <DraftStatus state={draftStatus} />
+                                                )}
+                                        </Box>
+                                        <AutocompleteTextarea
+                                            disabled={disableDialog}
+                                            ref={textAreaRef}
+                                            label={meldingsTypeTekst?.tittel}
+                                            hideLabel
+                                            size="small"
+                                            value={field.state.value}
+                                            onChange={(e) => field.handleChange(e.target.value)}
+                                            error={buildErrorMessage(field.state.meta.errors)}
+                                            maxLength={maksLengdeMelding}
+                                            resize="vertical"
+                                            minRows={minRows}
+                                            maxRows={50}
+                                        />
+                                    </div>
+                                )}
+                            </form.Field>
+                            <Bleed
+                                marginBlock={{
+                                    xs: 'space-0 space-0',
+                                    md: disableDialog ? 'space-0 space-0' : 'space-20 space-0'
+                                }}
+                                asChild
+                            >
+                                <HStack gap="space-4" justify="end">
+                                    <Box height="15px" width="100px" />
+                                    <HStack justify="end" wrap={false}>
+                                        <AutoCompleteTekstTips />
+                                        <StandardTekstModal
+                                            textAreaRef={textAreaRef}
+                                            submitTekst={(standardTekst) =>
+                                                settInnStandardTekst(standardTekst, textAreaRef, (e) =>
+                                                    form.setFieldValue('melding', e.target.value)
+                                                )
+                                            }
+                                        />
+                                        <SaksbehandlerNavnDialog />
+                                    </HStack>
+                                    <HStack
+                                        justify="end"
+                                        gap="space-8"
+                                        align="center"
+                                        flexGrow="1"
+                                        maxWidth="fit-content"
+                                        className="flex-row-reverse"
+                                    >
+                                        <Button
+                                            disabled={disableDialog || isPending}
+                                            type="submit"
+                                            size="small"
+                                            data-testid="svar-knapp"
+                                            loading={isPending}
+                                        >
+                                            Send til {brukerNavn}
+                                        </Button>
+                                        {meldingsType === MeldingsType.Referat && (
+                                            <Button
+                                                type="button"
+                                                variant="secondary"
+                                                size="small"
+                                                disabled={disableDialog || isPending}
+                                                onClick={() => form.handleSubmit({ velgSak: true })}
+                                            >
+                                                Send og journalfør
+                                            </Button>
+                                        )}
+                                        <AvbrytAlert
+                                            disablePopup={form.getFieldValue('melding').length === 0}
+                                            handleAvbryt={() => {
+                                                removeDraft();
+                                                setNyMeldingUnderArbeid(false);
+                                                trackGenereltUmamiEvent(trackingEvents.avbrytMelding);
+                                            }}
+                                        />
+                                    </HStack>
+                                </HStack>
+                            </Bleed>
+                        </VStack>
+                    </VStack>
+                </fieldset>
+            </form>
+            {visJournalforing && (
+                <SendOgJournalforModal
+                    isPending={isPending}
+                    disabled={disableDialog}
+                    onClose={() => {
+                        if (!sender.current) setVisJournalforing(false);
+                    }}
+                    onConfirm={(sak) => form.handleSubmit({ sak })}
+                />
+            )}
+        </>
     );
 }
 
