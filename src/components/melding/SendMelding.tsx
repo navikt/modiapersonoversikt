@@ -1,13 +1,20 @@
 import { XMarkIcon } from '@navikt/aksel-icons';
 import { Alert, Button, Heading, HStack, Skeleton, VStack } from '@navikt/ds-react';
-import { useAtom } from 'jotai';
+import { Link } from '@tanstack/react-router';
+import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { useEffect, useMemo, useState } from 'react';
 import { traadTypeTekst } from 'src/components/Meldinger/List/tekster';
 import { nyesteMelding, useTraader } from 'src/components/Meldinger/List/utils';
 import { IkkeOppgavebehandlendeEnhetAlert } from 'src/components/melding/IkkeOppgavebehandlendeEnhetAlert';
-import { dialogFeilMeldingAtom, dialogSuksessMeldingAtom } from 'src/components/melding/MeldingPanel';
+import {
+    dialogFeilMeldingAtom,
+    dialogSuksessMeldingAtom,
+    referatResultatAtom,
+    useReferatResultat
+} from 'src/components/melding/MeldingPanel';
 import { ReservertIKRRAlert } from 'src/components/melding/ReservertIKRRAlert';
 import { useMeldinger } from 'src/lib/clients/modiapersonoversikt-api';
+import { aktivEnhetAtom, usePersonAtomValue } from 'src/lib/state/context';
 import { svarUnderArbeidAtom } from 'src/lib/state/dialog';
 import { type Traad, type TraadDto, TraadType } from 'src/lib/types/modiapersonoversikt-api';
 import { type Temagruppe, temagruppeTekst } from 'src/lib/types/temagruppe';
@@ -42,6 +49,10 @@ const meldingsHeader = (traad?: TraadDto) => {
 };
 
 const SendMeldingContent = ({ traader }: { traader: Traad[] }) => {
+    const fnr = usePersonAtomValue();
+    const enhet = useAtomValue(aktivEnhetAtom);
+    const referatResultat = useReferatResultat();
+    const setReferatResultat = useSetAtom(referatResultatAtom);
     const [dialogUnderArbeid, setDialogUnderArbeid] = useAtom(svarUnderArbeidAtom);
     const traad = useMemo(() => traader.find((m) => m.traadId === dialogUnderArbeid), [traader, dialogUnderArbeid]);
     const [meldingsTittel, setMeldingsTittel] = useState(meldingsHeader(traad));
@@ -50,15 +61,15 @@ const SendMeldingContent = ({ traader }: { traader: Traad[] }) => {
 
     const { isPending } = useMeldinger();
 
-    const feedbackMelding = suksessMelding || feilMelding;
+    const feedbackMelding = referatResultat || suksessMelding || feilMelding;
 
     useEffect(() => {
-        if (!feedbackMelding || isPending || feilMelding) return;
+        if (!feedbackMelding || isPending || feilMelding || referatResultat) return;
         const timer = setTimeout(() => {
             setSuksessMelding(null);
         }, 2000);
         return () => clearTimeout(timer);
-    }, [feedbackMelding, isPending, feilMelding, setSuksessMelding]);
+    }, [feedbackMelding, isPending, feilMelding, referatResultat, setSuksessMelding]);
 
     useEffect(() => {
         if (feedbackMelding) return;
@@ -68,6 +79,7 @@ const SendMeldingContent = ({ traader }: { traader: Traad[] }) => {
     const lukkFeedback = () => {
         setSuksessMelding(null);
         setFeilMelding(null);
+        setReferatResultat(null);
     };
 
     const feilMeldingComp = feilMelding ? <Alert variant="error">{feilMelding}</Alert> : null;
@@ -78,7 +90,7 @@ const SendMeldingContent = ({ traader }: { traader: Traad[] }) => {
                 <Heading level="2" size="small">
                     {meldingsTittel}
                 </Heading>
-                {feilMelding && (
+                {(feilMelding || referatResultat) && (
                     <Button
                         variant="tertiary"
                         size="small"
@@ -93,6 +105,22 @@ const SendMeldingContent = ({ traader }: { traader: Traad[] }) => {
             {feedbackMelding ? (
                 <Card padding="space-8" as="section" aria-label="Dialogpanel">
                     <VStack gap="space-4">
+                        {referatResultat && (
+                            <>
+                                <Alert variant={referatResultat.variant}>{referatResultat.melding}</Alert>
+                                {referatResultat.traadId && (
+                                    <Link
+                                        to="/new/person/meldinger"
+                                        search={{ traadId: referatResultat.traadId }}
+                                        onClick={lukkFeedback}
+                                    >
+                                        <Button as="span" variant="tertiary" size="small">
+                                            Åpne referatet
+                                        </Button>
+                                    </Link>
+                                )}
+                            </>
+                        )}
                         {suksessMeldingComp}
                         {feilMeldingComp}
                     </VStack>
@@ -120,7 +148,7 @@ const SendMeldingContent = ({ traader }: { traader: Traad[] }) => {
                     </>
                 )
             ) : (
-                <NyMelding />
+                <NyMelding key={`${fnr}-${enhet}`} />
             )}
         </Card>
     );
