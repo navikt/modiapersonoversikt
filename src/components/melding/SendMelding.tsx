@@ -64,12 +64,13 @@ const SendMeldingContent = ({ traader }: { traader: Traad[] }) => {
     const feedbackMelding = referatResultat || suksessMelding || feilMelding;
 
     useEffect(() => {
-        if (!feedbackMelding || isPending || feilMelding || referatResultat) return;
+        if (!feedbackMelding || isPending || feilMelding || referatResultat?.variant === 'error') return;
         const timer = setTimeout(() => {
             setSuksessMelding(null);
+            setReferatResultat(null);
         }, 2000);
         return () => clearTimeout(timer);
-    }, [feedbackMelding, isPending, feilMelding, referatResultat, setSuksessMelding]);
+    }, [feedbackMelding, isPending, feilMelding, referatResultat, setSuksessMelding, setReferatResultat]);
 
     useEffect(() => {
         if (feedbackMelding) return;
