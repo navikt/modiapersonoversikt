@@ -31,7 +31,7 @@ test.each(['ny melding', 'svar'])('tømmer kvittering når brukeren starter %s',
         fnr: traad.fnr,
         enhet: '0101',
         variant: 'success',
-        melding: 'Referatet er sendt, og journalføring er startet.'
+        melding: 'Referatet er sendt og journalført.'
     });
     render(
         <Provider store={store}>

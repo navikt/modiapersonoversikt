@@ -107,7 +107,7 @@ export const useSendMelding = () => {
                     variant: data.journalforingFeilet ? 'error' : 'success',
                     melding: data.journalforingFeilet
                         ? 'Referatet er sendt, men journalføringen feilet. Åpne referatet og journalfør det fra menyen.'
-                        : 'Referatet er sendt, og journalføring er startet.',
+                        : 'Referatet er sendt og journalført.',
                     traadId: data.traadId
                 });
                 return;

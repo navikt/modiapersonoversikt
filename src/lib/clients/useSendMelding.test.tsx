@@ -48,7 +48,7 @@ describe('sende og journalføre referat', () => {
         expect(store.get(referatResultatAtom)).toMatchObject({
             traadId: 'nytt-referat',
             variant: 'success',
-            melding: 'Referatet er sendt, og journalføring er startet.'
+            melding: 'Referatet er sendt og journalført.'
         });
         expect(store.get(dialogSuksessMeldingAtom)).toBeNull();
     });

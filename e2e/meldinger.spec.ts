@@ -201,7 +201,7 @@ for (const sakstype of ['fagsak', 'generell sak']) {
         await expect(bekreft).toBeEnabled();
         await bekreft.click();
 
-        await expect(page.getByText('Referatet er sendt, og journalføring er startet.')).toBeVisible();
+        await expect(page.getByText('Referatet er sendt og journalført.')).toBeVisible();
         await page.getByRole('link', { name: 'Åpne referatet' }).click();
         const detaljer = page.getByRole('region', { name: 'Dialogdetaljer' });
         await expect(detaljer).toContainText(`Referat med ${sakstype}`);
