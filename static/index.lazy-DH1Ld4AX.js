@@ -1,0 +1,2 @@
+import{i as e,p as t,t as n}from"./compiler-runtime-sZOoLxse.js";import{Fa as r}from"./main-ykZkbG1M.js";var i=n(),a=t(),o=r(`/new/person/`)({component:s});function s(){let t=(0,i.c)(1),n;return t[0]===Symbol.for(`react.memo_cache_sentinel`)?(n=(0,a.jsx)(e,{to:`/new/person/hjem`,replace:!0}),t[0]=n):n=t[0],n}export{o as Route};
+//# sourceMappingURL=index.lazy-DH1Ld4AX.js.map

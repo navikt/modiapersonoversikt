@@ -1,0 +1,2 @@
+import{Fa as e}from"./main-ykZkbG1M.js";import{p as t,t as n}from"./compiler-runtime-sZOoLxse.js";import{t as r}from"./Details-BW16Sgpp.js";var i=n(),a=t();function o(){let e=(0,i.c)(1),t;return e[0]===Symbol.for(`react.memo_cache_sentinel`)?(t=(0,a.jsx)(r,{}),e[0]=t):t=e[0],t}var s=e(`/new/person/hjem`)({component:o});export{s as Route};
+//# sourceMappingURL=hjem.lazy-CbQacZX1.js.map
