@@ -1,6 +1,6 @@
-import { type Representasjonsoppdrag, Skjulingsaarsak } from 'src/lib/types/modiapersonoversikt-api';
+import { type PersonData, Skjulingsaarsak } from 'src/lib/types/modiapersonoversikt-api';
 
-export const representasjonsoppdragMock: Representasjonsoppdrag = {
+export const representasjonsoppdragMock: Pick<PersonData, 'fullmaktsgivere' | 'vergehavere'> = {
     fullmaktsgivere: [
         {
             id: '00000000-0000-4000-8000-000000000001',
@@ -28,6 +28,5 @@ export const representasjonsoppdragMock: Representasjonsoppdrag = {
             leserettigheter: [{ kode: 'AAP', beskrivelse: 'Arbeidsavklaringspenger' }],
             skriverettigheter: [{ kode: 'AAP', beskrivelse: 'Arbeidsavklaringspenger' }]
         }
-    ],
-    feilendeSystemer: []
+    ]
 };

@@ -2,9 +2,8 @@ import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import {
     type Fullmaktsoppdrag,
+    type PersonData,
     PersonDataFeilendeSystemer,
-    type Representasjonsoppdrag,
-    RepresentasjonsoppdragFeilendeSystemer,
     Skjulingsaarsak
 } from 'src/lib/types/modiapersonoversikt-api';
 import { representasjonsoppdragMock } from 'src/mock/persondata/representasjonsoppdrag';
@@ -14,19 +13,11 @@ import { Representasjon } from './index';
 
 let person = createPersonData();
 let feilendeSystemer: PersonDataFeilendeSystemer[] = [];
-const refetch = vi.fn();
-let oppdrag: {
-    data?: Representasjonsoppdrag;
-    isPending: boolean;
-    isError: boolean;
-    isSuccess: boolean;
-    isFetching: boolean;
-    refetch: typeof refetch;
-};
+let harPersondata = true;
+let oppdrag: Pick<PersonData, 'fullmaktsgivere' | 'vergehavere'>;
 
 vi.mock('src/lib/clients/modiapersonoversikt-api', () => ({
-    usePersonData: () => ({ data: { person, feilendeSystemer } }),
-    useRepresentasjonsoppdrag: () => oppdrag
+    usePersonData: () => ({ data: harPersondata ? { person: { ...person, ...oppdrag }, feilendeSystemer } : undefined })
 }));
 
 beforeEach(() => {
@@ -34,15 +25,8 @@ beforeEach(() => {
     vi.setSystemTime(new Date('2026-03-10T12:00:00Z'));
     person = createPersonData();
     feilendeSystemer = [];
-    refetch.mockClear();
-    oppdrag = {
-        data: { fullmaktsgivere: [], vergehavere: [], feilendeSystemer: [] },
-        isPending: false,
-        isError: false,
-        isSuccess: true,
-        isFetching: false,
-        refetch
-    };
+    harPersondata = true;
+    oppdrag = { fullmaktsgivere: [], vergehavere: [] };
 });
 
 afterEach(() => vi.useRealTimers());
@@ -62,7 +46,7 @@ describe('Representasjonsoppdrag på Hjem', () => {
         ['Er verge for', 'Testperson Vergehaver'],
         ['Har fullmakt for', 'Testperson Fullmaktsgiver']
     ])('viser navn og FNR-kopieringsknapp inne i %s', async (tittel, navn) => {
-        oppdrag.data = representasjonsoppdragMock;
+        oppdrag = representasjonsoppdragMock;
         render(<Representasjon />);
         const region = screen.getByRole('region', { name: tittel });
         await userEvent.click(within(region).getByRole('button', { name: `${navn} Aktiv` }));
@@ -71,7 +55,7 @@ describe('Representasjonsoppdrag på Hjem', () => {
     });
 
     it('sorterer alle forhold, beholder flere forhold til samme person og inkluderer begge datogrenser', async () => {
-        oppdrag.data = {
+        oppdrag = {
             fullmaktsgivere: [
                 fullmakt('historisk', '2020-01-01', '2026-03-09'),
                 fullmakt('fremtidig', '2026-03-11'),
@@ -80,8 +64,7 @@ describe('Representasjonsoppdrag på Hjem', () => {
                 fullmakt('a', '2024-01-01'),
                 fullmakt('b', '2024-01-01')
             ],
-            vergehavere: [],
-            feilendeSystemer: []
+            vergehavere: []
         };
         render(<Representasjon />);
         expect(
@@ -110,7 +93,7 @@ describe('Representasjonsoppdrag på Hjem', () => {
     });
 
     it('viser også ett vergemål i accordion med statusetikett og bevarer tastaturstyrt utvidelse', async () => {
-        oppdrag.data = {
+        oppdrag = {
             ...representasjonsoppdragMock,
             vergehavere: [{ ...representasjonsoppdragMock.vergehavere[0], aktivt: false, gyldigFraOgMed: '2030-01-01' }]
         };
@@ -135,7 +118,7 @@ describe('Representasjonsoppdrag på Hjem', () => {
     it.each([Skjulingsaarsak.MANGLER_TILGANG, Skjulingsaarsak.UAVKLART])(
         'viser årsak uten motpartens navn eller ident ved %s',
         async (skjulingsaarsak) => {
-            oppdrag.data = {
+            oppdrag = {
                 fullmaktsgivere: [
                     {
                         ...fullmakt('skjult', '2020-01-01'),
@@ -146,8 +129,7 @@ describe('Representasjonsoppdrag på Hjem', () => {
                         }
                     }
                 ],
-                vergehavere: [],
-                feilendeSystemer: []
+                vergehavere: []
             };
             const { container } = render(<Representasjon />);
             await userEvent.click(screen.getByRole('button', { name: /Personopplysninger/ }));
@@ -163,39 +145,38 @@ describe('Representasjonsoppdrag på Hjem', () => {
         }
     );
 
-    it('viser ikke tomtilstand under lasting eller etter feil, og lar saksbehandler prøve igjen', async () => {
-        oppdrag = { ...oppdrag, data: undefined, isPending: true, isSuccess: false };
+    it('viser ikke tomtilstand eller separat lasting når persondata mangler', () => {
+        harPersondata = false;
         const { rerender } = render(<Representasjon />);
-        expect(screen.getByRole('status')).toHaveTextContent('Henter hvem personen representerer');
         expect(screen.queryByText('Ingen representasjonsdata')).not.toBeInTheDocument();
-        oppdrag = { ...oppdrag, isPending: false, isError: true };
+        expect(screen.queryByRole('status')).not.toBeInTheDocument();
+        harPersondata = true;
         rerender(<Representasjon />);
-        await userEvent.click(screen.getByRole('button', { name: 'Prøv igjen' }));
-        expect(refetch).toHaveBeenCalledOnce();
-        expect(screen.queryByText('Ingen representasjonsdata')).not.toBeInTheDocument();
+        expect(screen.getByText('Ingen representasjonsdata')).toBeVisible();
+        expect(screen.queryByRole('button', { name: 'Prøv igjen' })).not.toBeInTheDocument();
     });
 
-    it.each([RepresentasjonsoppdragFeilendeSystemer.FULLMAKTER, RepresentasjonsoppdragFeilendeSystemer.VERGEMAL])(
+    it.each([PersonDataFeilendeSystemer.REPR_API_FULLMAKTSGIVERE, PersonDataFeilendeSystemer.REPR_API_VERGEHAVERE])(
         'beholder vellykket liste og eksisterende innhold ved %s-feil',
-        async (feil) => {
+        (feil) => {
             person.rettsligHandleevne = [{ omfang: 'Testomfang', gyldighetsPeriode: {} }];
-            oppdrag.data = {
+            feilendeSystemer = [feil];
+            oppdrag = {
                 ...representasjonsoppdragMock,
                 fullmaktsgivere:
-                    feil === RepresentasjonsoppdragFeilendeSystemer.FULLMAKTER
+                    feil === PersonDataFeilendeSystemer.REPR_API_FULLMAKTSGIVERE
                         ? []
                         : representasjonsoppdragMock.fullmaktsgivere,
                 vergehavere:
-                    feil === RepresentasjonsoppdragFeilendeSystemer.VERGEMAL
+                    feil === PersonDataFeilendeSystemer.REPR_API_VERGEHAVERE
                         ? []
-                        : representasjonsoppdragMock.vergehavere,
-                feilendeSystemer: [feil]
+                        : representasjonsoppdragMock.vergehavere
             };
             render(<Representasjon />);
             expect(screen.getByRole('heading', { name: 'Rettslig handleevne' })).toBeVisible();
             expect(
                 screen.getByText(
-                    feil === RepresentasjonsoppdragFeilendeSystemer.FULLMAKTER
+                    feil === PersonDataFeilendeSystemer.REPR_API_FULLMAKTSGIVERE
                         ? 'Kunne ikke hente hvem personen har fullmakt for.'
                         : 'Kunne ikke hente hvem personen er verge for.'
                 )
@@ -203,16 +184,28 @@ describe('Representasjonsoppdrag på Hjem', () => {
             expect(
                 screen.getByRole('button', {
                     name:
-                        feil === RepresentasjonsoppdragFeilendeSystemer.FULLMAKTER
+                        feil === PersonDataFeilendeSystemer.REPR_API_FULLMAKTSGIVERE
                             ? 'Testperson Vergehaver Aktiv'
                             : 'Testperson Fullmaktsgiver Aktiv'
                 })
             ).toBeVisible();
-            await userEvent.click(screen.getByRole('button', { name: 'Prøv igjen' }));
-            expect(refetch).toHaveBeenCalledOnce();
+            expect(screen.queryByRole('button', { name: 'Prøv igjen' })).not.toBeInTheDocument();
             expect(screen.queryByText('Ingen representasjonsdata')).not.toBeInTheDocument();
         }
     );
+
+    it.each([
+        PersonDataFeilendeSystemer.PDL_TREDJEPARTSPERSONER,
+        PersonDataFeilendeSystemer.TILGANGSMASKINEN_TREDJEPARTSPERSONER
+    ])('viser feil fra felles tredjepersonoppslag uten retry-knapp ved %s', (feil) => {
+        feilendeSystemer = [feil];
+        oppdrag = representasjonsoppdragMock;
+        render(<Representasjon />);
+        expect(screen.getByText('Noen personopplysninger kunne ikke hentes.')).toBeVisible();
+        expect(screen.getByRole('button', { name: 'Testperson Vergehaver Aktiv' })).toBeVisible();
+        expect(screen.queryByRole('button', { name: 'Prøv igjen' })).not.toBeInTheDocument();
+        expect(screen.queryByText('Ingen representasjonsdata')).not.toBeInTheDocument();
+    });
 
     it('viser tomtilstand bare når gamle og nye data er avklart som tomme uten feil', () => {
         const { rerender } = render(<Representasjon />);
@@ -224,14 +217,10 @@ describe('Representasjonsoppdrag på Hjem', () => {
     });
 
     it('skiller to feilende kilder fra ingen forhold', () => {
-        oppdrag.data = {
-            fullmaktsgivere: [],
-            vergehavere: [],
-            feilendeSystemer: [
-                RepresentasjonsoppdragFeilendeSystemer.FULLMAKTER,
-                RepresentasjonsoppdragFeilendeSystemer.VERGEMAL
-            ]
-        };
+        feilendeSystemer = [
+            PersonDataFeilendeSystemer.REPR_API_FULLMAKTSGIVERE,
+            PersonDataFeilendeSystemer.REPR_API_VERGEHAVERE
+        ];
         render(<Representasjon />);
         expect(screen.getByText('Kunne ikke hente hvem personen er verge for.')).toBeVisible();
         expect(screen.getByText('Kunne ikke hente hvem personen har fullmakt for.')).toBeVisible();

@@ -5,25 +5,30 @@ import { HttpResponse, http } from 'msw';
 import type { PropsWithChildren } from 'react';
 import { apiBaseUri } from 'src/api/config';
 import { aktivBrukerAtom } from 'src/lib/state/context';
+import { PersonDataFeilendeSystemer } from 'src/lib/types/modiapersonoversikt-api';
 import { server } from 'src/mock/node';
 import { representasjonsoppdragMock } from 'src/mock/persondata/representasjonsoppdrag';
+import { createPersonData } from 'src/test/createPersonData';
 import { expect, it } from 'vitest';
-import { useRepresentasjonsoppdrag } from './modiapersonoversikt-api';
+import { usePersonData } from './modiapersonoversikt-api';
 
-it('tømmer forrige persons forhold under personbytte og bruker en separat query-nøkkel', async () => {
+it('henter forhold i personresponsen og viser ikke forrige persons forhold under personbytte', async () => {
     const store = createStore();
     const queryClient = new QueryClient({ defaultOptions: { queries: { retry: false } } });
     const andreRespons = Promise.withResolvers<void>();
     const foresporsler: string[] = [];
     server.use(
-        http.post(`${apiBaseUri}/person/representasjonsoppdrag`, async ({ request }) => {
+        http.post(`${apiBaseUri}/person`, async ({ request }) => {
             const { fnr } = (await request.json()) as { fnr: string };
             foresporsler.push(fnr);
             if (fnr === 'person-b') {
                 await andreRespons.promise;
-                return HttpResponse.json({ fullmaktsgivere: [], vergehavere: [], feilendeSystemer: [] });
+                return HttpResponse.json({ person: createPersonData(), feilendeSystemer: [] });
             }
-            return HttpResponse.json(representasjonsoppdragMock);
+            return HttpResponse.json({
+                person: { ...createPersonData(), ...representasjonsoppdragMock },
+                feilendeSystemer: []
+            });
         })
     );
     store.set(aktivBrukerAtom, 'person-a');
@@ -32,15 +37,15 @@ it('tømmer forrige persons forhold under personbytte og bruker en separat query
             <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
         </Provider>
     );
-    const { result, unmount } = renderHook(useRepresentasjonsoppdrag, { wrapper });
+    const { result, unmount } = renderHook(usePersonData, { wrapper });
     try {
-        await waitFor(() => expect(result.current.data?.vergehavere).toHaveLength(1));
+        await waitFor(() => expect(result.current.data?.person.vergehavere).toHaveLength(1));
         act(() => store.set(aktivBrukerAtom, 'person-b'));
         expect(result.current.data).toBeUndefined();
         await waitFor(() => expect(foresporsler).toEqual(['person-a', 'person-b']));
         expect(result.current.isPending).toBe(true);
         andreRespons.resolve();
-        await waitFor(() => expect(result.current.data?.vergehavere).toEqual([]));
+        await waitFor(() => expect(result.current.data?.person.vergehavere).toEqual([]));
     } finally {
         andreRespons.resolve();
         unmount();
@@ -48,33 +53,32 @@ it('tømmer forrige persons forhold under personbytte og bruker en separat query
     }
 });
 
-it('viser HTTP-feil fra klienten og henter forholdene ved manuell retry', async () => {
+it('beholder vellykkede persondata ved kildefeil uten en separat representasjonsspørring', async () => {
     const store = createStore();
     const queryClient = new QueryClient({ defaultOptions: { queries: { retry: false } } });
     store.set(aktivBrukerAtom, 'testperson');
+    let kall = 0;
     server.use(
-        http.post(
-            `${apiBaseUri}/person/representasjonsoppdrag`,
-            () => HttpResponse.json({ message: 'Testfeil' }, { status: 503 }),
-            { once: true }
-        ),
-        http.post(`${apiBaseUri}/person/representasjonsoppdrag`, () => HttpResponse.json(representasjonsoppdragMock))
+        http.post(`${apiBaseUri}/person`, () => {
+            kall += 1;
+            return HttpResponse.json({
+                person: { ...createPersonData(), vergehavere: representasjonsoppdragMock.vergehavere },
+                feilendeSystemer: [PersonDataFeilendeSystemer.REPR_API_FULLMAKTSGIVERE]
+            });
+        })
     );
     const wrapper = ({ children }: PropsWithChildren) => (
         <Provider store={store}>
             <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
         </Provider>
     );
-    const { result, unmount } = renderHook(useRepresentasjonsoppdrag, { wrapper });
+    const { result, unmount } = renderHook(usePersonData, { wrapper });
     try {
-        await waitFor(() => expect(result.current.isError).toBe(true));
-        expect(result.current.data).toBeUndefined();
-        await act(async () => {
-            await result.current.refetch();
-        });
         await waitFor(() => expect(result.current.isSuccess).toBe(true));
-        expect(result.current.data?.vergehavere).toHaveLength(1);
-        expect(result.current.data?.fullmaktsgivere).toHaveLength(2);
+        expect(result.current.data?.person.vergehavere).toHaveLength(1);
+        expect(result.current.data?.person.fullmaktsgivere).toEqual([]);
+        expect(result.current.data?.feilendeSystemer).toEqual([PersonDataFeilendeSystemer.REPR_API_FULLMAKTSGIVERE]);
+        expect(kall).toBe(1);
     } finally {
         unmount();
         queryClient.clear();

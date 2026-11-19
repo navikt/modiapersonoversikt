@@ -3,11 +3,7 @@ import { expect, type Page, type Route, test } from '@playwright/test';
 import { FeatureToggles } from '../src/components/featureToggle/toggleIDs';
 import { mockFeatureToggle } from '../src/mock/featureToggle-mock';
 
-async function openRepresentationScenario(
-    page: Page,
-    path: string,
-    scenario: 'normal' | 'http-error' | 'home-disabled'
-) {
+async function openRepresentationScenario(page: Page, path: string, scenario: 'source-error' | 'home-disabled') {
     // Register scenarios on the shared MSW worker before the app's first queries.
     const entryRequested = Promise.withResolvers<void>();
     let entryRoute: Route | undefined;
@@ -21,19 +17,24 @@ async function openRepresentationScenario(
         await entryRequested.promise;
         await page.waitForFunction(() => typeof Reflect.get(window, '$RefreshReg$') === 'function');
         await page.evaluate(
-            async ({ modulePath, polyfillsPath, scenario, toggles }) => {
+            async ({ modulePath, polyfillsPath, persondataPath, scenario, toggles }) => {
                 await import(polyfillsPath);
                 const { worker, http, HttpResponse }: typeof import('../src/mock/browser') = await import(modulePath);
-                worker.events.on('request:start', ({ request }) => {
-                    if (new URL(request.url).pathname.endsWith('/rest/person/representasjonsoppdrag')) {
-                        console.info('representasjonsoppdrag-kall');
-                    }
-                });
-                if (scenario === 'http-error') {
+                if (scenario === 'source-error') {
+                    const { hentPersondata }: typeof import('../src/mock/persondata/persondata') = await import(
+                        persondataPath
+                    );
                     worker.use(
-                        http.post('*/rest/person/representasjonsoppdrag', () =>
-                            HttpResponse.json({ message: 'Testfeil' }, { status: 503 })
-                        )
+                        http.post('*/rest/person', async ({ request }) => {
+                            const { fnr } = (await request.json()) as { fnr: string };
+                            const data = hentPersondata(fnr);
+                            if (!data) throw new Error('Testscenarioet krever gyldig persondata');
+                            return HttpResponse.json({
+                                ...data,
+                                person: { ...data.person, fullmaktsgivere: [] },
+                                feilendeSystemer: [...data.feilendeSystemer, 'REPR_API_FULLMAKTSGIVERE']
+                            });
+                        })
                     );
                 }
                 if (scenario === 'home-disabled') {
@@ -43,6 +44,7 @@ async function openRepresentationScenario(
             {
                 modulePath: '/src/mock/browser.ts',
                 polyfillsPath: '/src/extra-polyfills.ts',
+                persondataPath: '/src/mock/persondata/persondata.ts',
                 scenario,
                 toggles: Object.fromEntries(
                     Object.values(FeatureToggles).map((toggle) => [
@@ -87,19 +89,13 @@ test.describe('Gammel oversikt', () => {
         await expect(personLoaded).toHaveText(/Aremark Testfamilien/i);
     });
 
-    test('Representasjon starter ikke det nye oppslaget i legacy-visningen', async ({ page }) => {
-        const kall: string[] = [];
-        page.on('console', (melding) => {
-            if (melding.text() === 'representasjonsoppdrag-kall') {
-                kall.push(melding.text());
-            }
-        });
-        await openRepresentationScenario(page, '/person/oversikt', 'normal');
+    test('Representasjon viser ikke de nye listene i legacy-visningen', async ({ page }) => {
+        await page.goto('/person/oversikt');
         await expect(page).toHaveURL(/\/person\/oversikt(?:[?#]|$)/);
         await expect(page.getByTestId('visittkort:person')).toContainText(/Aremark Testfamilien/i);
         await page.waitForLoadState('networkidle');
         await expect(page.getByRole('heading', { name: 'Er verge for', exact: true })).toHaveCount(0);
-        expect(kall).toEqual([]);
+        await expect(page.getByRole('heading', { name: 'Har fullmakt for', exact: true })).toHaveCount(0);
     });
 });
 
@@ -179,36 +175,28 @@ test.describe('Representasjon på ny hjemside', () => {
         });
     }
 
-    test('lar saksbehandler prøve igjen etter HTTP-feil uten å skjule eksisterende innhold', async ({ page }) => {
-        await openRepresentationScenario(page, '/new/person/hjem', 'http-error');
+    test('viser kildefeil uten retry-knapp og beholder vellykket representasjonsinnhold', async ({ page }) => {
+        await openRepresentationScenario(page, '/new/person/hjem', 'source-error');
         const representasjon = page.locator('section').filter({
             has: page.getByRole('heading', { name: 'Representasjon og rettslig handleevne', exact: true })
         });
-        const feil = representasjon.getByText('Kunne ikke hente hvem personen er verge eller har fullmakt for.');
+        const feil = representasjon.getByText('Kunne ikke hente hvem personen har fullmakt for.');
         await expect(feil).toBeVisible();
         await expect(representasjon.getByRole('heading', { name: 'Fullmektige', exact: true })).toBeVisible();
-        await page.evaluate(async (modulePath) => {
-            const { worker }: typeof import('../src/mock/browser') = await import(modulePath);
-            worker.resetHandlers();
-        }, '/src/mock/browser.ts');
-        await representasjon.getByRole('button', { name: 'Prøv igjen' }).click();
-        await expect(feil).not.toBeVisible();
         await expect(representasjon.getByRole('button', { name: 'Prøv igjen' })).toHaveCount(0);
-        await expect(representasjon.getByRole('heading', { name: 'Fullmektige', exact: true })).toBeVisible();
         await expect(page.getByRole('region', { name: 'Er verge for', exact: true })).toBeVisible();
-        await expect(page.getByRole('region', { name: 'Har fullmakt for', exact: true })).toBeVisible();
+        await expect(page.getByRole('button', { name: 'Testperson Vergehaver Aktiv' })).toBeVisible();
+        await expect(page.getByRole('button', { name: 'Testperson Fullmaktsgiver Aktiv' })).toHaveCount(0);
     });
 
-    test('starter ikke det nye oppslaget i ny oversikt eller når Hjem er slått av', async ({ page }) => {
-        const kall: string[] = [];
-        page.on('console', (melding) => {
-            if (melding.text() === 'representasjonsoppdrag-kall') {
-                kall.push(melding.text());
-            }
-        });
+    test('viser ikke de nye listene i ny oversikt eller når Hjem er slått av', async ({ page }) => {
         for (const scenario of ['normal', 'home-disabled'] as const) {
             const path = scenario === 'normal' ? '/new/person/oversikt' : '/new/person/hjem';
-            await openRepresentationScenario(page, path, scenario);
+            if (scenario === 'home-disabled') {
+                await openRepresentationScenario(page, path, scenario);
+            } else {
+                await page.goto(path);
+            }
             await expect(page).toHaveURL(/\/new\/person\/oversikt(?:[?#]|$)/);
             await expect(page.getByTestId('person-route')).toBeVisible();
             await page.waitForLoadState('networkidle');
@@ -218,7 +206,6 @@ test.describe('Representasjon på ny hjemside', () => {
                 await expect(page.getByRole('link', { name: /^Hjem/ })).toHaveCount(0);
             }
         }
-        expect(kall).toEqual([]);
     });
 });
 

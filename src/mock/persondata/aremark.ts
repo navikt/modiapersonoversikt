@@ -13,6 +13,7 @@ import {
 } from '../../app/personside/visittkort-v2/PersondataDomain';
 import { harDiskresjonskode } from '../../app/personside/visittkort-v2/visittkort-utils';
 import { FullmaktEndringHendelse, FullmaktEndringKilde, OppholdType } from '../../generated/modiapersonoversikt-api';
+import { representasjonsoppdragMock } from './representasjonsoppdrag';
 
 function hentBarnAremark(): ForelderBarnRelasjon[] {
     return [
@@ -69,6 +70,7 @@ function hentBarnAremark(): ForelderBarnRelasjon[] {
 }
 
 export const aremark: Person = {
+    ...representasjonsoppdragMock,
     personIdent: '10108000398',
     navn: [
         {
@@ -263,6 +265,11 @@ export const aremark: Person = {
             type: OppholdType.MIDLERTIDIG,
             oppholdFra: '2025-01-01' as LocalDate,
             oppholdTil: '2027-12-31' as LocalDate
+        },
+        {
+            type: OppholdType.MIDLERTIDIG,
+            oppholdFra: '2027-01-01' as LocalDate,
+            oppholdTil: '2029-12-31' as LocalDate
         }
     ],
     adressebeskyttelse: [
