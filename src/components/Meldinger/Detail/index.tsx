@@ -16,6 +16,7 @@ import { Meldinger } from './Meldinger';
 const TraadDetailContent = ({ traad }: { traad: Traad }) => {
     const kanBesvares = traadKanBesvares(traad);
     const melding = nyesteMelding(traad);
+    const sendtTilSladding = traad.meldinger.some((melding) => melding.sendtTilSladding);
     const avsluttetDato = traad.avsluttetDato || melding.avsluttetDato;
     const avsluttetAv = traad.avsluttetAv || melding.skrevetAvTekst;
 
@@ -46,12 +47,12 @@ const TraadDetailContent = ({ traad }: { traad: Traad }) => {
                                 {melding.ferdigstiltDato && formaterDato(melding.ferdigstiltDato)}
                             </InlineMessage>
                         )}
-                        {melding.sendtTilSladding && (
+                        {sendtTilSladding && (
                             <InlineMessage status="warning" size="small">
                                 Tråden ligger til behandling for sladding
                             </InlineMessage>
                         )}
-                        {traad.sattTilSladdingAv && (
+                        {traad.sattTilSladdingAv && sendtTilSladding && (
                             <InlineMessage status="warning" size="small">
                                 Tråden er satt til sladding av {traad.sattTilSladdingAv}
                             </InlineMessage>

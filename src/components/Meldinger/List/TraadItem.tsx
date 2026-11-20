@@ -123,12 +123,16 @@ function AvsluttetMelding({ traad }: { traad: TraadDto }) {
 }
 
 function Sladdet({ traad }: { traad: TraadDto }) {
-    const sisteMelding = nyesteMelding(traad);
-    if (!traad.sattTilSladdingAv && !sisteMelding.sendtTilSladding) return null;
+    const harSladdetMelding = traad.meldinger.some((melding) => melding.sladdet);
+    const sendtTilSladding = traad.meldinger.some((melding) => melding.sendtTilSladding);
+
+    const meldingsTekst = harSladdetMelding ? 'Sladdet' : sendtTilSladding ? 'Sendt til sladding' : null;
+
+    if (!meldingsTekst) return null;
 
     return (
         <Tag size="xsmall" variant="moderate" data-color="brand-magenta" icon={<TabsRemoveIcon aria-hidden />}>
-            Sladding
+            {meldingsTekst}
         </Tag>
     );
 }

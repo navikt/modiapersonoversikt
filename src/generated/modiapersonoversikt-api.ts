@@ -2196,19 +2196,19 @@ export interface components {
             boost?: number | null;
         };
         GraphQLClientError: {
-            locations?: components["schemas"]["GraphQLClientSourceLocation"][] | null;
             message: string;
             path?: unknown[] | null;
             extensions?: {
                 [key: string]: unknown;
             } | null;
+            locations?: components["schemas"]["GraphQLClientSourceLocation"][] | null;
         };
         GraphQLClientResponseResult: {
-            errors?: components["schemas"]["GraphQLClientError"][] | null;
             extensions?: {
                 [key: string]: unknown;
             } | null;
             data?: components["schemas"]["Result"] | null;
+            errors?: components["schemas"]["GraphQLClientError"][] | null;
         };
         GraphQLClientSourceLocation: {
             /** Format: int32 */
@@ -2324,6 +2324,7 @@ export interface components {
             ferdigstiltDato: string;
             sendtTilSladding: boolean;
             markertSomFeilsendtAv?: components["schemas"]["Veileder"] | null;
+            sladdet?: boolean | null;
         };
         TraadDTO: {
             traadId: string;
