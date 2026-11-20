@@ -124,7 +124,8 @@ function AvsluttetMelding({ traad }: { traad: TraadDto }) {
 
 function Sladdet({ traad }: { traad: TraadDto }) {
     const harSladdetMelding = traad.meldinger.some((melding) => melding.sladdet);
-    const sendtTilSladding = nyesteMelding(traad).sendtTilSladding;
+    const sendtTilSladding = traad.meldinger.some((melding) => melding.sendtTilSladding);
+
     const meldingsTekst = harSladdetMelding ? 'Sladdet' : sendtTilSladding ? 'Sendt til sladding' : null;
 
     if (!meldingsTekst) return null;

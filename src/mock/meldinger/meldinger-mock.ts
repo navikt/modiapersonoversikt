@@ -41,12 +41,13 @@ export function getMockTraader(fodselsnummer: string): Traad[] {
     }
 
     return traadArray
-        .map((traad) => {
+        .map<Traad>((traad) => {
             const meldinger = traad.meldinger;
             meldinger[0].id = traad.traadId; // Første melding i en tråd har alltid id === traadId
             return {
                 ...traad,
-                meldinger
+                meldinger,
+                sattTilSladdingAv: meldinger.some((melding) => melding.sendtTilSladding) ? 'Z999999' : undefined
             };
         })
         .concat(getChatTraad());
