@@ -243,7 +243,10 @@ export function PersonsokForm({ onSubmit, onReset }: Props) {
                                     onChange={(e) => field.handleChange(e.target.value)}
                                     onBlur={field.handleBlur}
                                     value={field.state.value}
-                                    error={field.state.meta.errors.join(', ')}
+                                    error={field.state.meta.errors
+                                        .map((error) => error?.message)
+                                        .filter((error) => !!error)
+                                        .join(', ')}
                                 />
                             )}
                         </form.Field>
@@ -256,7 +259,10 @@ export function PersonsokForm({ onSubmit, onReset }: Props) {
                                     onChange={(e) => field.handleChange(e.target.value)}
                                     onBlur={field.handleBlur}
                                     value={field.state.value}
-                                    error={field.state.meta.errors.join(', ')}
+                                    error={field.state.meta.errors
+                                        .map((error) => error?.message)
+                                        .filter((error) => !!error)
+                                        .join(', ')}
                                 />
                             )}
                         </form.Field>
