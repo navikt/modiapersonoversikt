@@ -1,6 +1,6 @@
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { createRef } from 'react';
-import { useDispatch } from 'react-redux';
+import { useAppDispatch } from 'src/redux/ThunkTypes';
 import styled from 'styled-components';
 import { Bold, FlexEnd, SpaceBetween } from '../../../../../components/common-styled-components';
 import PrintKnapp from '../../../../../components/PrintKnapp';
@@ -56,7 +56,7 @@ function SammensattUtbetaling(props: Props) {
     const printer = usePrinter();
     const print = printer.triggerPrint;
     const PrinterWrapper = printer.printerWrapper;
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const ekspanderYtelse = (ytelse: Ytelse) => dispatch(setEkspanderYtelse(ytelse, true));
 
     useOnMount(() => {

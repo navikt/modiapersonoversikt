@@ -49,6 +49,31 @@ describe('PersonsokForm', () => {
         expect(onSubmit).not.toHaveBeenCalled();
     });
 
+    test.each([
+        ['Alder fra', 'alderFra'],
+        ['Alder til', 'alderTil']
+    ] as const)('sender %s som et tall', async (felt, requestFelt) => {
+        const onSubmit = vi.fn<(value: PersonsokRequest | undefined) => void>();
+        render(<PersonsokForm onSubmit={onSubmit} onReset={vi.fn()} />);
+
+        await userEvent.type(screen.getByLabelText('Fornavn'), 'Testperson');
+        await userEvent.type(screen.getByLabelText(felt), '30');
+        await userEvent.click(screen.getByRole('button', { name: /Søk ny person/ }));
+
+        expect(onSubmit).toHaveBeenCalledWith(expect.objectContaining({ [requestFelt]: 30 }));
+    });
+
+    test.each(['-1', 'abc'])('søker ikke med ugyldig alder %s', async (alder) => {
+        const onSubmit = vi.fn<(value: PersonsokRequest | undefined) => void>();
+        render(<PersonsokForm onSubmit={onSubmit} onReset={vi.fn()} />);
+
+        await userEvent.type(screen.getByLabelText('Fornavn'), 'Testperson');
+        await userEvent.type(screen.getByLabelText('Alder fra'), alder);
+        await userEvent.click(screen.getByRole('button', { name: /Søk ny person/ }));
+
+        expect(onSubmit).not.toHaveBeenCalled();
+    });
+
     test('trimmer bort mellomrom rundt søkeverdien', async () => {
         const onSubmit = await fyllUtOgSok('Etternavn', '  Aremark  ');
 

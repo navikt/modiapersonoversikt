@@ -1,6 +1,6 @@
 import { useNavigate } from '@tanstack/react-router';
 import type { JSX } from 'react';
-import { useDispatch } from 'react-redux';
+import { useAppDispatch } from 'src/redux/ThunkTypes';
 import LazySpinner from '../../../../components/LazySpinner';
 import type { Traad } from '../../../../models/meldinger/meldinger';
 import { setValgtTraadDialogpanel } from '../../../../redux/oppgave/actions';
@@ -25,7 +25,7 @@ type Response = Pending | Success;
 function useVisTraadTilknyttetPlukketOppgave(dialogpanelTraad?: Traad): Response {
     const traaderResource = dialogResource.useFetch();
     const tildelteOppgaver = useTildelteOppgaver();
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const dyplenker = useInfotabsDyplenker();
     const navigate = useNavigate();
 
