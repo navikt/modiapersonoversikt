@@ -1,17 +1,21 @@
 import { useQueryClient } from '@tanstack/react-query';
 import dayjs from 'dayjs';
-import { useAtomValue, useSetAtom } from 'jotai';
+import { useAtomValue, useSetAtom, useStore } from 'jotai';
 import createFetchClient from 'openapi-fetch';
 import createClient from 'openapi-react-query';
 import { FetchError } from 'src/api/api';
 import { apiBaseUriWithoutRest } from 'src/api/config';
 import { FeatureToggles } from 'src/components/featureToggle/toggleIDs';
 import useFeatureToggle from 'src/components/featureToggle/useFeatureToggle';
-import { dialogFeilMeldingAtom, dialogSuksessMeldingAtom } from 'src/components/melding/MeldingPanel';
+import {
+    dialogFeilMeldingAtom,
+    dialogSuksessMeldingAtom,
+    referatResultatAtom
+} from 'src/components/melding/MeldingPanel';
 import { toast } from 'src/components/toasts';
 import { errorPlaceholder, responseErrorMessage } from 'src/components/ytelser/utils';
-import type { paths } from 'src/generated/modiapersonoversikt-api';
-import { aktivEnhetAtom, usePersonAtomValue } from 'src/lib/state/context';
+import { type paths, SendMeldingRequestV2TraadType } from 'src/generated/modiapersonoversikt-api';
+import { aktivBrukerAtom, aktivEnhetAtom, usePersonAtomValue } from 'src/lib/state/context';
 import { datoSynkende } from 'src/utils/date-utils';
 
 export type ModiapersonoversiktAPI = paths;
@@ -75,30 +79,65 @@ export const useBaseUrls = () => {
 
 export const useSendMelding = () => {
     const queryClient = useQueryClient();
-    const fnr = usePersonAtomValue();
-    const enhet = useAtomValue(aktivEnhetAtom) as string;
     const setSuksessMelding = useSetAtom(dialogSuksessMeldingAtom);
     const setFeilMelding = useSetAtom(dialogFeilMeldingAtom);
+    const store = useStore();
+    const setReferatResultat = useSetAtom(referatResultatAtom);
 
     return $api.useMutation('post', '/rest/dialog/sendmelding', {
-        onSuccess: (data) => {
+        retry: false,
+        onSuccess: (data, { body }) => {
             queryClient.invalidateQueries({
                 queryKey: $api.queryOptions('post', '/rest/dialog/meldinger', {
-                    body: { fnr },
-                    params: { query: { enhet } }
-                }).queryKey
+                    body: { fnr: body.fnr },
+                    params: { query: { enhet: body.enhet } }
+                }).queryKey,
+                refetchType: 'all'
             });
             queryClient.invalidateQueries({
                 queryKey: $api.queryOptions('post', '/rest/oppgaver/tildelt', {
-                    body: { fnr }
+                    body: { fnr: body.fnr }
                 }).queryKey
             });
+            if (body.traadType === SendMeldingRequestV2TraadType.SAMTALEREFERAT && body.sak && !body.traadId) {
+                if (store.get(aktivBrukerAtom) !== body.fnr || store.get(aktivEnhetAtom) !== body.enhet) return;
+                setReferatResultat({
+                    fnr: body.fnr,
+                    enhet: body.enhet,
+                    variant: data.journalforingFeilet ? 'error' : 'success',
+                    melding: data.journalforingFeilet
+                        ? 'Referatet er sendt, men journalføringen feilet. Åpne referatet og journalfør det fra menyen.'
+                        : 'Referatet er sendt og journalført.',
+                    traadId: data.traadId
+                });
+                return;
+            }
             setSuksessMelding('Melding sendt');
             if (data.journalforingFeilet) {
                 setFeilMelding('Journalføring feilet. Journalfør manuelt og meld fra i Porten om problemet vedvarer.');
             }
         },
-        onError: () => {
+        onError: (error: unknown, { body }) => {
+            if (body.traadType === SendMeldingRequestV2TraadType.SAMTALEREFERAT && body.sak && !body.traadId) {
+                queryClient.invalidateQueries({
+                    queryKey: $api.queryOptions('post', '/rest/dialog/meldinger', {
+                        body: { fnr: body.fnr },
+                        params: { query: { enhet: body.enhet } }
+                    }).queryKey,
+                    refetchType: 'all'
+                });
+                if (store.get(aktivBrukerAtom) !== body.fnr || store.get(aktivEnhetAtom) !== body.enhet) return;
+                const avvist = error instanceof FetchError && error.response.status < 500;
+                setReferatResultat({
+                    fnr: body.fnr,
+                    enhet: body.enhet,
+                    variant: 'error',
+                    melding: avvist
+                        ? 'Kunne ikke sende referatet. Kontroller teksten, temagruppen og valgt sak.'
+                        : 'Vi kunne ikke bekrefte om referatet ble sendt og journalført. Kontroller meldingslisten før du sender på nytt.'
+                });
+                return;
+            }
             setFeilMelding('Kunne ikke sende melding');
         },
         throwOnError: false

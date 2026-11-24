@@ -173,6 +173,81 @@ test('Send ny melding', async ({ page }) => {
     await expect(meldingerList.first()).toContainText('playwright new melding');
 });
 
+for (const sakstype of ['fagsak', 'generell sak']) {
+    test(`Send og journalfør referat på ${sakstype}`, async ({ page }) => {
+        await page.goto('/new/person/meldinger');
+        await page.getByRole('button', { name: 'Skriv ny melding' }).click();
+        await page.getByRole('button', { name: 'Overskrid' }).click();
+        await page.getByRole('radio', { name: 'Referat', exact: true }).click();
+        await page.getByRole('textbox').fill(`Referat med ${sakstype}`);
+        await page.getByLabel('Temagruppe').selectOption('Pensjon');
+        await page.getByRole('button', { name: 'Send og journalfør', exact: true }).click();
+
+        const modal = page.getByRole('dialog', { name: 'Send og journalfør referat' });
+        const bekreft = modal.getByRole('button', { name: 'Send og journalfør', exact: true });
+        await expect(bekreft).toBeDisabled();
+        if (sakstype === 'generell sak') {
+            await modal.getByRole('radio', { name: 'Generelle saker', exact: true }).click();
+            await modal.getByRole('combobox', { name: 'Velg tema' }).fill('Dagpenger');
+            await modal.getByRole('option', { name: 'Dagpenger', exact: true }).click();
+            await expect(modal.getByRole('status')).toContainText('Generell sak: Dagpenger');
+        } else {
+            await modal.getByRole('option', { name: 'Dagpenger', exact: true }).click();
+            const sak = modal.getByRole('listbox', { name: 'Velg sak' }).getByRole('option').first();
+            await sak.focus();
+            await sak.press('Enter');
+            await expect(modal.getByRole('status')).toContainText('Valgt sak:');
+        }
+        await expect(bekreft).toBeEnabled();
+        await bekreft.click();
+
+        await expect(page.getByText('Referatet er sendt og journalført.')).toBeVisible();
+        await page.getByRole('link', { name: 'Åpne referatet' }).click();
+        const detaljer = page.getByRole('region', { name: 'Dialogdetaljer' });
+        await expect(detaljer).toContainText(`Referat med ${sakstype}`);
+        await expect(detaljer.getByRole('heading').first()).toHaveText('Referat - Pensjon');
+        await detaljer.getByTestId('journalposter-readmore').click();
+        await expect(detaljer.getByTestId('journalposter-table')).toContainText('Dagpenger');
+    });
+}
+
+test('Avbrutt journalføring oppretter ingenting og vanlig sending bruker ikke valgt sak', async ({ page }) => {
+    await page.goto('/new/person/meldinger');
+    await page.getByRole('button', { name: 'Skriv ny melding' }).click();
+    await page.getByRole('button', { name: 'Overskrid' }).click();
+    await page.getByRole('radio', { name: 'Referat', exact: true }).click();
+    await page.getByRole('textbox').fill('Referat uten journalføring');
+    await page.getByLabel('Temagruppe').selectOption('Pensjon');
+    const antallTraader = await page.getByTestId('traaditem').count();
+    await page.getByRole('button', { name: 'Send og journalfør', exact: true }).click();
+    const modal = page.getByRole('dialog', { name: 'Send og journalfør referat' });
+    await modal.getByRole('option', { name: 'Dagpenger', exact: true }).click();
+    await modal.getByRole('listbox', { name: 'Velg sak' }).getByRole('option').first().click();
+    await modal.getByRole('button', { name: 'Avbryt', exact: true }).click();
+
+    await expect(page.getByRole('textbox')).toHaveValue('Referat uten journalføring');
+    await expect(page.getByTestId('traaditem')).toHaveCount(antallTraader);
+    const sending = page.waitForRequest((request) => request.url().endsWith('/dialog/sendmelding'));
+    await page.getByTestId('svar-knapp').click();
+    expect((await sending).postDataJSON()).not.toHaveProperty('sak');
+});
+
+test('Send og journalfør krever referat med tekst og temagruppe', async ({ page }) => {
+    await page.goto('/new/person/meldinger');
+    await page.getByRole('button', { name: 'Skriv ny melding' }).click();
+    await page.getByRole('button', { name: 'Overskrid' }).click();
+    await page.getByRole('radio', { name: 'Referat', exact: true }).click();
+    await page.getByRole('button', { name: 'Send og journalfør', exact: true }).click();
+    await expect(page.getByRole('dialog', { name: 'Send og journalfør referat' })).toHaveCount(0);
+    await expect(page.getByText('Fyll ut meldingsfeltet')).toBeVisible();
+    await expect(page.getByText('Knytt meldingen til en temagruppe')).toBeVisible();
+
+    await page.getByRole('radio', { name: 'Samtale', exact: true }).click();
+    await expect(page.getByRole('button', { name: 'Send og journalfør', exact: true })).toHaveCount(0);
+    await page.getByRole('radio', { name: 'Infomelding', exact: true }).click();
+    await expect(page.getByRole('button', { name: 'Send og journalfør', exact: true })).toHaveCount(0);
+});
+
 test('Journalfore dialog', async ({ page }) => {
     // traadId from statiskTraadMock
     await page.goto('/new/person/meldinger?traadId=sg838exr');

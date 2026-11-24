@@ -3,6 +3,7 @@ import { BodyLong, Button, Dialog } from '@navikt/ds-react';
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { useState } from 'react';
 import { traadKanBesvares } from 'src/components/Meldinger/List/utils';
+import { referatResultatAtom } from 'src/components/melding/MeldingPanel';
 import { draftAtom, meldingPanelIsOpenAtom, nyMeldingUnderArbeidAtom, svarUnderArbeidAtom } from 'src/lib/state/dialog';
 import type { Traad } from 'src/lib/types/modiapersonoversikt-api';
 import { trackGenereltUmamiEvent, trackingEvents } from 'src/utils/analytics';
@@ -13,6 +14,7 @@ export const SvarPaaTraadKnapp = ({ traad }: { traad: Traad }) => {
     const setNyMeldingUnderArbeid = useSetAtom(nyMeldingUnderArbeidAtom);
     const draft = useAtomValue(draftAtom);
     const [isAvbrytDialogOpen, setIsAvbrytDialogOpen] = useState(false);
+    const setReferatResultat = useSetAtom(referatResultatAtom);
 
     const openDialogEllerSvarPaaTraad = () => {
         trackGenereltUmamiEvent(trackingEvents.startSvar);
@@ -24,6 +26,7 @@ export const SvarPaaTraadKnapp = ({ traad }: { traad: Traad }) => {
     };
 
     const svarSamtale = () => {
+        setReferatResultat(null);
         setSvarUnderArbeid(traad.traadId);
         setNyMeldingUnderArbeid(false);
     };

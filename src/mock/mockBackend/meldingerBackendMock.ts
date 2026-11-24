@@ -11,7 +11,8 @@ import {
     type OpprettHenvendelseRequest,
     type OpprettHenvendelseResponse,
     type SendMeldingRequest,
-    type Traad
+    type Traad,
+    TraadType
 } from '../../models/meldinger/meldinger';
 import { Temagruppe } from '../../models/temagrupper';
 import { backendDatoTidformat } from '../../utils/date-utils';
@@ -93,6 +94,9 @@ export class MeldingerBackendMock {
             this.sendteSvar.unshift(traad);
         } else {
             this.sendteNyeMeldinger.unshift(traad);
+            if (request.traadType === TraadType.SAMTALEREFERAT && request.sak && !this.journalforingFeilet) {
+                this.journalfor(traad.traadId, request.sak);
+            }
         }
         return traad;
     }
@@ -107,7 +111,7 @@ export class MeldingerBackendMock {
         };
     }
 
-    public journalfor(traadId: string, request: JournalforingSak) {
+    public journalfor(traadId: string, request: JournalforingSak | NonNullable<SendMeldingRequest['sak']>) {
         const newJournalpost = toJournalpost(request);
         this.journalposter[traadId] = [...(this.journalposter[traadId] ?? []), newJournalpost];
     }
@@ -129,7 +133,7 @@ export class MeldingerBackendMock {
     }
 }
 
-function toJournalpost(req: JournalforingSak): Traad['journalposter'][number] {
+function toJournalpost(req: JournalforingSak | NonNullable<SendMeldingRequest['sak']>): Traad['journalposter'][number] {
     return {
         journalfortAv: { navn: 'Veileder', ident: 'Z999999' },
         journalfortDato: dayjs().format(backendDatoTidformat),
