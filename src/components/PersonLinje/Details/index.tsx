@@ -27,7 +27,6 @@ import FamilieGammel from './Familie/FamilieGammel';
 import Flytting from './Flytting';
 import FlyttingGammel from './FlyttingGammel';
 import ForeldreAnsvar from './ForeldreAnsvar';
-import Fullmakt from './Fullmakt';
 import KontaktInfo from './KontaktInfo';
 import NavKontor from './NavKontor';
 import NavKontorGammel from './NavKontor/NavKontorGammel';
@@ -200,7 +199,6 @@ const PersonlinjeDetailsGammel = () => {
                 <VStack flexBasis="30%" flexGrow="1">
                     <DodsdatoInfo />
                     <KontaktInfo />
-                    <Fullmakt />
                 </VStack>
                 <VStack flexBasis="30%" flexGrow="1">
                     <FamilieGammel />

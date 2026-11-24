@@ -76,7 +76,7 @@ export const PaginatedList = <T, KeyType extends string | number>({
                         Ingen resultat
                     </InlineMessage>
                 ) : (
-                    <div ref={listRef} tabIndex={!selectedItem && !!onSelectItem ? 0 : -1}>
+                    <div ref={listRef} tabIndex={!selectedItem && onSelectItem ? 0 : -1}>
                         <VStack as="ul" gap="space-4">
                             {renderItems?.map((item, i) => (
                                 <RenderComp item={item} key={`${i}-${keyExtractor(item)}`} />
