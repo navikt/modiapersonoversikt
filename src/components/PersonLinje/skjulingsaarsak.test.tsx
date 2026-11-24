@@ -172,53 +172,50 @@ describe.each([...aarsaker, detaljertAvslag])('%s: %s', (skjulingsaarsak, tekst,
         expect(screen.queryByRole('button', { name: 'Endringslogg' })).not.toBeInTheDocument();
     });
 
-    it.each([Fullmakt])(
-        'viser fullmaktens ident uten skjult profil eller endringslogg (%s)',
-        async (Komponent) => {
-            person.fullmektige = [
-                {
-                    ident: '',
-                    navn: { fornavn: 'Skjult', etternavn: 'Fullmektig' },
-                    digitalKontaktinformasjonTredjepartsperson: { mobiltelefonnummer: '99999999' },
-                    skjulingsaarsak,
-                    tilgangsavslag,
-                    fullmakt: {
-                        fullmaktId: 'test-fullmakt',
-                        fullmaktsgiver: person.fnr,
-                        fullmektig: '01010112345',
-                        gyldigFraOgMed: '2020-01-01',
-                        leserettigheter: [{ kode: 'AAP', beskrivelse: 'Arbeidsavklaringspenger' }],
-                        skriverettigheter: [],
-                        endringslogg: [
-                            {
-                                endringId: 1,
-                                registrert: '2020-01-01T10:30:00',
-                                registrertAv: 'testsystem',
-                                kilde: FullmaktEndringKilde.SYSTEM,
-                                hendelse: FullmaktEndringHendelse.OPPRETTELSE_AV_BRUKER,
-                                gyldigFraOgMed: '2020-01-01',
-                                gyldigTilOgMed: '2020-12-31',
-                                leserettigheter: [{ kode: 'AAP', beskrivelse: 'Arbeidsavklaringspenger' }],
-                                skriverettigheter: []
-                            }
-                        ]
-                    }
+    it.each([Fullmakt])('viser fullmaktens ident uten skjult profil eller endringslogg (%s)', async (Komponent) => {
+        person.fullmektige = [
+            {
+                ident: '',
+                navn: { fornavn: 'Skjult', etternavn: 'Fullmektig' },
+                digitalKontaktinformasjonTredjepartsperson: { mobiltelefonnummer: '99999999' },
+                skjulingsaarsak,
+                tilgangsavslag,
+                fullmakt: {
+                    fullmaktId: 'test-fullmakt',
+                    fullmaktsgiver: person.fnr,
+                    fullmektig: '01010112345',
+                    gyldigFraOgMed: '2020-01-01',
+                    leserettigheter: [{ kode: 'AAP', beskrivelse: 'Arbeidsavklaringspenger' }],
+                    skriverettigheter: [],
+                    endringslogg: [
+                        {
+                            endringId: 1,
+                            registrert: '2020-01-01T10:30:00',
+                            registrertAv: 'testsystem',
+                            kilde: FullmaktEndringKilde.SYSTEM,
+                            hendelse: FullmaktEndringHendelse.OPPRETTELSE_AV_BRUKER,
+                            gyldigFraOgMed: '2020-01-01',
+                            gyldigTilOgMed: '2020-12-31',
+                            leserettigheter: [{ kode: 'AAP', beskrivelse: 'Arbeidsavklaringspenger' }],
+                            skriverettigheter: []
+                        }
+                    ]
                 }
-            ];
-            feilendeSystemer = [PersonDataFeilendeSystemer.PDL_TREDJEPARTSPERSONER];
-            render(<Komponent />);
-            const utvid = screen.queryByRole('button', { name: /Fullmektig:/ });
-            if (utvid) await userEvent.click(utvid);
+            }
+        ];
+        feilendeSystemer = [PersonDataFeilendeSystemer.PDL_TREDJEPARTSPERSONER];
+        render(<Komponent />);
+        const utvid = screen.queryByRole('button', { name: /Fullmektig:/ });
+        if (utvid) await userEvent.click(utvid);
 
-            expect(screen.getByRole('button', { name: 'Kopier f.nr.: 010101 12345' })).toBeVisible();
-            expect(screen.queryByText(/Skjult Fullmektig|99999999/)).not.toBeInTheDocument();
-            const detaljer = screen.queryByRole('button', { name: 'Detaljer' });
-            if (detaljer) await userEvent.click(detaljer);
-            expect(screen.queryByRole('button', { name: 'Endringslogg' })).not.toBeInTheDocument();
-            expect(screen.queryByText('Registrert av: testsystem')).not.toBeInTheDocument();
-            expect(screen.getAllByText('Leserettigheter: arbeidsavklaringspenger').length).toBeGreaterThan(0);
-        }
-    );
+        expect(screen.getByRole('button', { name: 'Kopier f.nr.: 010101 12345' })).toBeVisible();
+        expect(screen.queryByText(/Skjult Fullmektig|99999999/)).not.toBeInTheDocument();
+        const detaljer = screen.queryByRole('button', { name: 'Detaljer' });
+        if (detaljer) await userEvent.click(detaljer);
+        expect(screen.queryByRole('button', { name: 'Endringslogg' })).not.toBeInTheDocument();
+        expect(screen.queryByText('Registrert av: testsystem')).not.toBeInTheDocument();
+        expect(screen.getAllByText('Leserettigheter: arbeidsavklaringspenger').length).toBeGreaterThan(0);
+    });
 
     it.each([Vergemal, VergemalGammel])(
         'beholder vergemålsmetadata uten personopplysninger (%s)',
