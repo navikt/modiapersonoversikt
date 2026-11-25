@@ -27,11 +27,7 @@ async function aapneMeny(queryClient?: QueryClient) {
     const result = render(<NyModiaDropdownMeny />, {
         wrapper: ({ children }: PropsWithChildren) => (
             <Provider store={store}>
-                {queryClient ? (
-                    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-                ) : (
-                    children
-                )}
+                {queryClient ? <QueryClientProvider client={queryClient}>{children}</QueryClientProvider> : children}
             </Provider>
         )
     });
@@ -81,9 +77,7 @@ it('beholder gruppen og låser versjonsvalget når gammel Modia deaktiveres mens
     expect(screen.getByText('Velg versjon')).toBeVisible();
     expect(screen.getByRole('separator')).toBeVisible();
 
-    await act(() =>
-        queryClient.setQueryData(featuretoggles.queryKey, { [FeatureToggles.DeaktiverGammelModia]: true })
-    );
+    await act(() => queryClient.setQueryData(featuretoggles.queryKey, { [FeatureToggles.DeaktiverGammelModia]: true }));
 
     expect(screen.getByText('Velg versjon')).toBeVisible();
     expect(screen.getByRole('separator')).toBeVisible();
