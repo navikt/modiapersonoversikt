@@ -2,9 +2,11 @@ import { cleanup, render, screen, waitFor } from '@testing-library/react';
 import type { OppgaveDto } from 'src/generated/modiapersonoversikt-api';
 import { vi } from 'vitest';
 import HandleLegacyUrls from './HandleLegacyUrls';
+import { loggEvent } from './logger/frontendLogger';
 
-const { search, navigate, settAktivBruker, mutate, oppgave } = vi.hoisted(() => ({
+const { search, location, navigate, settAktivBruker, mutate, oppgave } = vi.hoisted(() => ({
     search: { current: {} as Record<string, string> },
+    location: { searchStr: undefined as string | undefined },
     navigate: vi.fn(),
     settAktivBruker: vi.fn(),
     mutate: vi.fn(),
@@ -13,7 +15,9 @@ const { search, navigate, settAktivBruker, mutate, oppgave } = vi.hoisted(() => 
 
 vi.mock('@tanstack/react-router', () => ({
     useSearch: () => search.current,
-    useNavigate: () => navigate
+    useNavigate: () => navigate,
+    useLocation: ({ select }: { select: (location: { searchStr: string }) => boolean }) =>
+        select({ searchStr: location.searchStr ?? new URLSearchParams(search.current).toString() })
 }));
 vi.mock('src/lib/hooks/useSettAktivBruker', () => ({
     useSettAktivBruker: () => settAktivBruker
@@ -25,25 +29,63 @@ vi.mock('src/lib/clients/modiapersonoversikt-api', () => ({
     useOppgave: () => oppgave
 }));
 vi.mock('src/utils/analytics', () => ({ trackDyplenkeFraEksternKilde: vi.fn() }));
+vi.mock('src/utils/logger/frontendLogger', () => ({ loggEvent: vi.fn() }));
 
 beforeEach(() => {
     vi.clearAllMocks();
     mutate.mockReset();
     search.current = {};
+    location.searchStr = undefined;
     oppgave.data = undefined;
     oppgave.isLoading = false;
 });
 
 afterEach(cleanup);
 
-it('ignorerer rått fødselsnummer i query uten å endre aktiv person', () => {
-    search.current = { sokFnr: '00000000000' };
+it.each(['sokFnr', 'fnr'])('logger rått fødselsnummer i %s uten persondata eller endret kontekst', (parameter) => {
+    search.current = { [parameter]: '00000000000' };
     render(<HandleLegacyUrls>Innhold</HandleLegacyUrls>);
 
+    expect(loggEvent).toHaveBeenCalledExactlyOnceWith('IgnorertFnrIUrl', 'HandleLegacyUrls');
     expect(screen.getByText('Innhold')).toBeInTheDocument();
     expect(settAktivBruker).not.toHaveBeenCalled();
     expect(mutate).not.toHaveBeenCalled();
     expect(navigate).not.toHaveBeenCalled();
+});
+
+it('logger ikke inngangslenker uten rått fødselsnummer', () => {
+    search.current = { henvendelseId: 'dialog-1' };
+    render(<HandleLegacyUrls>Innhold</HandleLegacyUrls>);
+
+    expect(loggEvent).not.toHaveBeenCalled();
+});
+
+it('logger fødselsnummer som rutens søkeskjema har fjernet', () => {
+    location.searchStr = '?sokFnr=00000000000';
+    render(<HandleLegacyUrls>Innhold</HandleLegacyUrls>);
+
+    expect(loggEvent).toHaveBeenCalledExactlyOnceWith('IgnorertFnrIUrl', 'HandleLegacyUrls');
+    expect(mutate).not.toHaveBeenCalled();
+    expect(settAktivBruker).not.toHaveBeenCalled();
+});
+
+it('logger én gang per inngangslenke også mens oppgaven lastes', () => {
+    search.current = { sokFnr: '00000000000', oppgaveId: 'oppgave-1' };
+    oppgave.isLoading = true;
+    const view = render(<HandleLegacyUrls>Innhold</HandleLegacyUrls>);
+
+    expect(loggEvent).toHaveBeenCalledExactlyOnceWith('IgnorertFnrIUrl', 'HandleLegacyUrls');
+    oppgave.isLoading = false;
+    view.rerender(<HandleLegacyUrls>Innhold</HandleLegacyUrls>);
+    expect(loggEvent).toHaveBeenCalledTimes(1);
+    expect(mutate).not.toHaveBeenCalled();
+    expect(settAktivBruker).not.toHaveBeenCalled();
+
+    search.current = {};
+    view.rerender(<HandleLegacyUrls>Innhold</HandleLegacyUrls>);
+    search.current = { sokFnr: '00000000000' };
+    view.rerender(<HandleLegacyUrls>Innhold</HandleLegacyUrls>);
+    expect(loggEvent).toHaveBeenCalledTimes(2);
 });
 
 it('bevarer trådvalg uten å bruke fødselsnummeret fra query', () => {

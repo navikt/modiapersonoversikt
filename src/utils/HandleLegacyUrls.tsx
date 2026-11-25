@@ -1,14 +1,21 @@
 import { Loader } from '@navikt/ds-react';
-import { useNavigate, useSearch } from '@tanstack/react-router';
+import { useLocation, useNavigate, useSearch } from '@tanstack/react-router';
 import { type PropsWithChildren, useEffect, useRef, useState } from 'react';
 import type { OppgaveDto } from 'src/generated/modiapersonoversikt-api';
 import { useSetUserContext } from 'src/lib/clients/contextholder';
 import { useOppgave } from 'src/lib/clients/modiapersonoversikt-api';
 import { useSettAktivBruker } from 'src/lib/hooks/useSettAktivBruker';
 import { trackDyplenkeFraEksternKilde } from 'src/utils/analytics';
+import { loggEvent } from 'src/utils/logger/frontendLogger';
 
 function HandleLegacyUrls({ children }: PropsWithChildren) {
     const { oppgaveId, sokFnrCode, henvendelseId, behandlingsId } = useSearch({ strict: false });
+    const harFnrIUrl = useLocation({
+        select: ({ searchStr }) => {
+            const params = new URLSearchParams(searchStr);
+            return params.has('sokFnr') || params.has('fnr');
+        }
+    });
 
     const settGjeldendeBruker = useSettAktivBruker();
     const navigate = useNavigate();
@@ -16,6 +23,12 @@ function HandleLegacyUrls({ children }: PropsWithChildren) {
     const { data: oppgaveData, isLoading } = useOppgave(oppgaveId);
     const hasHandled = useRef(false);
     const setUserContext = useSetUserContext();
+
+    useEffect(() => {
+        if (harFnrIUrl) {
+            loggEvent('IgnorertFnrIUrl', 'HandleLegacyUrls');
+        }
+    }, [harFnrIUrl]);
 
     useEffect(() => {
         if (oppgaveId && isLoading) return;
