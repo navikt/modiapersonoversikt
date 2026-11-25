@@ -81,7 +81,7 @@ it('avbryter et påbegynt versjonsbytte når gammel Modia deaktiveres', () => {
     store.set(nyModiaAtom, true);
     const preferanse = localStorage.getItem('ny-modia-v2');
     const view = render(<NyModiaSwitch />, { wrapper });
-    fireEvent.click(screen.getByLabelText('Ny Modia'));
+    fireEvent.click(screen.getByLabelText('Ny Modia', { selector: 'input' }));
 
     vi.mocked(useDeaktiverGammelModia).mockReturnValue({ status: 'success', isOn: true });
     view.rerender(<NyModiaSwitch />);
@@ -96,8 +96,8 @@ it('avbryter et påbegynt versjonsbytte når gammel Modia deaktiveres', () => {
 it('beholder versjonsvalget og forsinkelsen når gammel visning er tilgjengelig', () => {
     render(<NyModiaSwitch />, { wrapper });
 
-    fireEvent.click(screen.getByLabelText('Ny Modia'));
-    expect(screen.getByLabelText('Ny Modia')).toBeChecked();
+    fireEvent.click(screen.getByLabelText('Ny Modia', { selector: 'input' }));
+    expect(screen.getByLabelText('Ny Modia', { selector: 'input' })).toBeChecked();
     expect(store.get(nyModiaAtom)).toBe(false);
 
     act(() => vi.advanceTimersByTime(200));
