@@ -11,9 +11,9 @@ import { NyModiaSwitch } from 'src/components/NyModiaSwitch';
 export const NyModiaDropdownMeny = () => {
     const { isOn } = useFeatureToggle(FeatureToggles.NyModiaKnapp);
     const deaktivering = useDeaktiverGammelModia();
-    const visVersjonsvalg = isOn && deaktivering.status === 'success' && !deaktivering.isOn;
+    const visVersjonsvalg = deaktivering.status !== 'pending' && (isOn || deaktivering.isOn);
     const opneIntroduksjonsModal = useSetAtom(openIntroduksjonsModalAtom);
-    const ref = useRef<HTMLInputElement | null>(null);
+    const ref = useRef<HTMLDivElement | null>(null);
     const [openedWithKeyboard, setOpenedWithKeyboard] = useState(false);
 
     const onOpenChange = (open: boolean): void => {
