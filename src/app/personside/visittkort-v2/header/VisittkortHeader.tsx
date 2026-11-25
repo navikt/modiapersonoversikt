@@ -1,10 +1,10 @@
 import { Undertittel } from 'nav-frontend-typografi';
 import { useRef } from 'react';
+import { Kjonn, type KodeBeskrivelse, type Data as Persondata } from 'src/models/person/persondata';
 import styled from 'styled-components';
 import VisMerChevron from '../../../../components/VisMerChevron';
 import theme, { pxToRem } from '../../../../styles/personOversiktTheme';
 import { useOnMount } from '../../../../utils/customHooks';
-import { Kjonn, type KodeBeskrivelse, type Data as Persondata } from '../PersondataDomain';
 import { hentAlderEllerDod, hentNavn } from '../visittkort-utils';
 import Etiketter from './etiketter/Etiketter';
 import KjonnIkon from './KjonnIkon';

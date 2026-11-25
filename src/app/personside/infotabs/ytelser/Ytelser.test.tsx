@@ -1,5 +1,5 @@
 import { act } from '@testing-library/react';
-import { renderWithProviders } from '../../../../test/Testprovider';
+import { renderWithProviders } from '../../../../test/LegacyTestprovider';
 import { setupReactQueryMocks } from '../../../../test/testStore';
 import Ytelser from './Ytelser';
 

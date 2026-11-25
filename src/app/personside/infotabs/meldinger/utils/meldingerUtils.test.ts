@@ -1,6 +1,7 @@
+import { erMeldingFraBruker, erMeldingFraNav } from 'src/utils/meldinger-utils';
 import { LestStatus, type Melding, Meldingstype, type Traad } from '../../../../../models/meldinger/meldinger';
 import { Temagruppe, temagruppeTekst } from '../../../../../models/temagrupper';
-import { erMeldingFraBruker, erMeldingFraNav, erUbesvartHenvendelseFraBruker } from './meldingerUtils';
+import { erUbesvartHenvendelseFraBruker } from './meldingerUtils';
 
 describe('Meldingstyper', () => {
     const sporsmalSkriflig = Meldingstype.SPORSMAL_SKRIFTLIG;

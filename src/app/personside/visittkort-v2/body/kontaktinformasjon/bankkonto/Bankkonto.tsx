@@ -1,7 +1,7 @@
 import { Feilmelding, Normaltekst } from 'nav-frontend-typografi';
+import type { Bankkonto as BankkontoInterface } from 'src/models/person/persondata';
 import CoinsIkon from '../../../../../../svg/Coins';
 import { FormatertKontonummer } from '../../../../../../utils/FormatertKontonummer';
-import type { Bankkonto as BankkontoInterface } from '../../../PersondataDomain';
 import VisittkortElement from '../../VisittkortElement';
 import KontoEndringsTekst from './KontoEndringstekst';
 

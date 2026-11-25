@@ -4,6 +4,7 @@ import { Flatknapp, Hovedknapp } from 'nav-frontend-knapper';
 import { Ingress, Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import { useState } from 'react';
 import { usePersonAtomValue } from 'src/lib/state/context';
+import type { JournalforingsSak } from 'src/models/meldinger/journalforing';
 import { trackGenereltUmamiEvent, trackingEvents } from 'src/utils/analytics';
 import styled from 'styled-components';
 import { post } from '../../../../../../../api/api';
@@ -16,7 +17,6 @@ import { formatterDatoMedMaanedsnavnOrNull } from '../../../../../../../utils/da
 import { loggError } from '../../../../../../../utils/logger/frontendLogger';
 import { ENDASH } from '../../../../../../../utils/string-utils';
 import { StyledTable } from '../../../../../../../utils/table/StyledTable';
-import type { JournalforingsSak } from './JournalforingPanel';
 import { sakKategori } from './VelgSak';
 
 interface Props {

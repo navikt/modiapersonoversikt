@@ -4,11 +4,11 @@ import { Knapp } from 'nav-frontend-knapper';
 import Tekstomrade, { defaultRules, type Rule } from 'nav-frontend-tekstomrade';
 import { Systemtittel } from 'nav-frontend-typografi';
 import { type ComponentProps, useRef } from 'react';
+import type * as StandardTekster from 'src/lib/types/skrivestotte';
+import { erGyldigValg } from 'src/utils/standardtekster';
 import styled from 'styled-components';
 import theme from '../../../../../../styles/personOversiktTheme';
 import type { FieldState } from '../../../../../../utils/hooks/use-field-state';
-import type * as StandardTekster from '../domain';
-import { erGyldigValg } from '../sokUtils';
 
 interface Props {
     tekst: StandardTekster.Tekst | undefined;

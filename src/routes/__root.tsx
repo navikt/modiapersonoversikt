@@ -5,15 +5,16 @@ import { createRootRoute, Outlet, useMatchRoute } from '@tanstack/react-router';
 import { useAtomValue } from 'jotai';
 import { lazy, type PropsWithChildren, useEffect, useState } from 'react';
 import { Toaster } from 'sonner';
-import HentGlobaleVerdier from 'src/app/FetchSessionInfoOgLeggIRedux';
-import Decorator from 'src/app/internarbeidsflatedecorator/Decorator';
-import LoggetUtModal from 'src/app/LoggetUtModal';
-import VelgEnhet from 'src/app/VelgEnhet';
+import Decorator from 'src/components/Decorator/Decorator';
 import DemoBanner from 'src/components/DemoBanner';
 import ErrorBoundary from 'src/components/ErrorBoundary';
+import useDeaktiverGammelModia from 'src/components/featureToggle/useDeaktiverGammelModia';
+import HentGlobaleVerdier from 'src/components/HentGlobaleVerdier';
+import LoggetUtModal from 'src/components/LoggetUtModal';
 import NotFound from 'src/components/NotFound';
 import { nyModiaAtom, useNavigateToNewOrOldModia } from 'src/components/NyModia';
 import { SkyraHandler } from 'src/components/SkyraHandler';
+import VelgEnhet from 'src/components/VelgEnhet';
 import { ValgtEnhetProvider } from 'src/context/valgtenhet-state';
 import { aktivBrukerAtom, aktivBrukerLastetAtom, aktivEnhetAtom } from 'src/lib/state/context';
 import { ThemeProvider, themeAtom } from 'src/lib/state/theme';
@@ -112,14 +113,49 @@ const SkipNavigasjonsLink = () => {
     );
 };
 
+function UtfasingVarsel() {
+    const matchRoute = useMatchRoute();
+    const aktivBruker = useAtomValue(aktivBrukerAtom);
+    const nyModiaEnabled = useAtomValue(nyModiaAtom);
+    const deaktivering = useDeaktiverGammelModia();
+    const visUtfasingVarsel =
+        !!aktivBruker &&
+        !nyModiaEnabled &&
+        matchRoute({ to: '/new', fuzzy: true }) === false &&
+        deaktivering.status === 'success' &&
+        !deaktivering.isOn;
+
+    if (!visUtfasingVarsel) return null;
+
+    return (
+        <GlobalAlert status="warning" centered={true} size="small">
+            <GlobalAlert.Header>
+                <GlobalAlert.Title>Gamle Modia fases ut 1. desember 2026</GlobalAlert.Title>
+            </GlobalAlert.Header>
+            <GlobalAlert.Content>
+                Etter denne datoen må du bruke Ny Modia. Vi anbefaler at du tar den i bruk allerede nå, så du blir kjent
+                med løsningen i god tid.
+            </GlobalAlert.Content>
+            <GlobalAlert.Content>
+                Ved mangler i Ny Modia, meld fra i{' '}
+                <Link
+                    href="https://jira.adeo.no/plugins/servlet/desk/portal/541"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Porten
+                    <ExternalLinkIcon aria-hidden />
+                </Link>
+            </GlobalAlert.Content>
+        </GlobalAlert>
+    );
+}
+
 function RootLayout() {
     const matchRoute = useMatchRoute();
     const isLanding = matchRoute({ to: '/landingpage' });
     const isPersonvern = matchRoute({ to: '/personvern' });
     const isNewModia = matchRoute({ to: '/new/person', fuzzy: true }) !== false;
-    const aktivBruker = useAtomValue(aktivBrukerAtom);
-    const nyModiaEnabled = useAtomValue(nyModiaAtom);
-    const visUtfasingVarsel = !!aktivBruker && !nyModiaEnabled && matchRoute({ to: '/new', fuzzy: true }) === false;
     const theme = useAtomValue(themeAtom);
 
     useEffect(() => {
@@ -140,28 +176,7 @@ function RootLayout() {
                             <HandleLegacyUrls>
                                 <DemoBanner />
                                 <Decorator />
-                                {visUtfasingVarsel && (
-                                    <GlobalAlert status="warning" centered={true} size="small">
-                                        <GlobalAlert.Header>
-                                            <GlobalAlert.Title>Gamle Modia fases ut 1. desember 2026</GlobalAlert.Title>
-                                        </GlobalAlert.Header>
-                                        <GlobalAlert.Content>
-                                            Etter denne datoen må du bruke Ny Modia. Vi anbefaler at du tar den i bruk
-                                            allerede nå, så du blir kjent med løsningen i god tid.
-                                        </GlobalAlert.Content>
-                                        <GlobalAlert.Content>
-                                            Ved mangler i Ny Modia, meld fra i{' '}
-                                            <Link
-                                                href="https://jira.adeo.no/plugins/servlet/desk/portal/541"
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                            >
-                                                Porten
-                                                <ExternalLinkIcon aria-hidden />
-                                            </Link>
-                                        </GlobalAlert.Content>
-                                    </GlobalAlert>
-                                )}
+                                <UtfasingVarsel />
                                 <ErrorBoundary>
                                     <App>
                                         <Outlet />

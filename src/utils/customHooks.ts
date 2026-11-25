@@ -1,5 +1,3 @@
-import { useNavigate } from '@tanstack/react-router';
-import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { eq } from 'lodash';
 import type * as React from 'react';
 import {
@@ -12,12 +10,6 @@ import {
     useRef,
     useState
 } from 'react';
-import { useSelector } from 'react-redux';
-import { nyModiaAtom } from 'src/components/NyModia';
-import { aktivBrukerAtom } from 'src/lib/state/context';
-import { meldingPanelIsOpenAtom, nyMeldingUnderArbeidAtom, svarUnderArbeidAtom } from 'src/lib/state/dialog';
-import { paths } from '../app/routes/routing';
-import type { AppState } from '../redux/reducers';
 import { type EventListener, runIfEventIsNotInsideRef } from './reactRef-utils';
 
 export function useFocusOnMount(ref: React.RefObject<HTMLElement | null>) {
@@ -80,51 +72,4 @@ export function usePrevious<T>(value: T) {
     }
 
     return previous;
-}
-
-export function useAppState<T>(selector: (state: AppState) => T) {
-    return useSelector((state: AppState) => selector(state));
-}
-
-export function useSettAktivBruker() {
-    const [currentFnr, setBruker] = useAtom(aktivBrukerAtom);
-    const nyModia = useAtomValue(nyModiaAtom);
-    const navigate = useNavigate();
-    const meldingPanelIsOpen = useAtomValue(meldingPanelIsOpenAtom);
-    const setSvarUnderArbeid = useSetAtom(svarUnderArbeidAtom);
-    const setNyMeldingUnderArbeid = useSetAtom(nyMeldingUnderArbeidAtom);
-
-    return (fnr: string | null, redirect = true) => {
-        if (!fnr) {
-            navigate({ to: '/' });
-            setBruker('');
-            return;
-        }
-
-        if (currentFnr && fnr !== currentFnr && meldingPanelIsOpen) {
-            setSvarUnderArbeid(undefined);
-            setNyMeldingUnderArbeid(false);
-        }
-
-        setBruker(fnr);
-        // Set fokus til personlinje med viktig informasjon (for skjermlesere og tastaturbrukere)
-        document.getElementById('personlinje-header')?.focus();
-
-        if (
-            redirect &&
-            ![
-                '/new/person',
-                paths.dokument,
-                paths.personUri,
-                paths.sakerFullscreen,
-                paths.saksdokumentEgetVindu,
-                paths.standaloneKomponenter,
-                paths.landingPage
-            ].some((path) => location.pathname.startsWith(path))
-        ) {
-            navigate({ to: nyModia ? '/new/person' : paths.personUri }).finally(() => {
-                document.getElementById('personlinje-header')?.focus();
-            });
-        }
-    };
 }

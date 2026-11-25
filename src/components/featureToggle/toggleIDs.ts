@@ -2,6 +2,7 @@ export enum FeatureToggles {
     VisPromptMeldingSending = 'modiapersonoversikt.vis-promt-naar-melding-sendes',
     JournalforUtenSvar = 'modiapersonoversikt.meldinger-uten-svar-kan-journalfores',
     NyModiaKnapp = 'modiapersonoversikt.ny-modia-knapp',
+    DeaktiverGammelModia = 'modiapersonoversikt.deaktiver-gammel-modia',
     InfotrygdSykepenger = 'modiapersonoversikt.infotrygd-sykepenger',
     SpokelseSykepenger = 'modiapersonoversikt.spokelse-sykepenger',
     NyttDokumentTemaFilter = 'modiapersonoversikt.nytt-dokument-tema-filter',

@@ -1,5 +1,5 @@
 import { ToggleGroup } from '@navikt/ds-react';
-import { SakKategori } from 'src/app/personside/infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
+import { SakKategori } from 'src/models/meldinger/journalforing';
 
 interface SakVelgerRadioGroupProps {
     valgtSakKategori: SakKategori;

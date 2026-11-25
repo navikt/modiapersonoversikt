@@ -1,5 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
 import SaksDokumentEgetVindu from 'src/app/personside/infotabs/saksoversikt/SaksDokumentIEgetVindu';
+import LegacyModiaGate from 'src/components/LegacyModiaGate';
 import WaitForUserLoaded from 'src/components/WaitForUserLoaded';
 import { z } from 'zod';
 
@@ -14,5 +15,9 @@ export const Route = createFileRoute('/dokument')({
 });
 
 function DokumentRoute() {
-    return <WaitForUserLoaded>{({ fnr }) => <SaksDokumentEgetVindu fnr={fnr} />}</WaitForUserLoaded>;
+    return (
+        <LegacyModiaGate>
+            <WaitForUserLoaded>{({ fnr }) => <SaksDokumentEgetVindu fnr={fnr} />}</WaitForUserLoaded>
+        </LegacyModiaGate>
+    );
 }

@@ -1,5 +1,5 @@
 import { HStack, Link } from '@navikt/ds-react';
-import useUrlNyPersonforvalter from 'src/app/brukerprofil/useUrlNyPersonforvalter';
+import useUrlNyPersonforvalter from 'src/lib/hooks/useUrlNyPersonforvalter';
 
 function PdlLenke({ utenBunnpadding = false }: { utenBunnpadding?: boolean }) {
     const personforvalterUrl = useUrlNyPersonforvalter();

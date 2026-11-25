@@ -4,9 +4,9 @@ import { useAtomValue } from 'jotai';
 import { useLayoutEffect, useRef, useState } from 'react';
 import { FetchError } from 'src/api/api';
 import { $api } from 'src/lib/clients/modiapersonoversikt-api';
+import { useSettAktivBruker } from 'src/lib/hooks/useSettAktivBruker';
 import { aktivEnhetAtom } from 'src/lib/state/context';
 import type { PersonsokRequest, PersonsokResponse } from 'src/lib/types/modiapersonoversikt-api';
-import { useSettAktivBruker } from 'src/utils/customHooks';
 import { lagTreffTekst, MAKS_ANTALL_SIDER, MAKS_ANTALL_TREFF, RESULTATER_PER_SIDE } from './utils';
 
 export const FOR_MANGE_TREFF_TEKST = 'Søket gav for mange treff. Legg til flere søkekriterier og prøv igjen.';

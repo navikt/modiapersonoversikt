@@ -1,9 +1,10 @@
 import { useEffect, useMemo, useState } from 'react';
+import { nyesteMelding } from 'src/utils/meldinger-utils';
 import type { Melding, Traad } from '../../../models/meldinger/meldinger';
 import dialogResource from '../../../rest/resources/dialogResource';
 import { erMaks10MinSiden } from '../../../utils/date-utils';
 import { loggError } from '../../../utils/logger/frontendLogger';
-import { nyesteMelding, nyesteTraad } from '../infotabs/meldinger/utils/meldingerUtils';
+import { nyesteTraad } from '../infotabs/meldinger/utils/meldingerUtils';
 
 interface SendtMelding {
     pending: boolean;

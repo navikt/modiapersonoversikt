@@ -1,5 +1,4 @@
 import { Heading, InlineMessage, Table, VStack } from '@navikt/ds-react';
-import { utledUtbetalingPåVentÅrsak } from 'src/app/personside/infotabs/ytelser/sykepenger/utbetalingerpåvent/utledUtbetalingerPåVentÅrsak';
 import Card from 'src/components/Card';
 import { formaterPeriode, formaterProsent } from 'src/components/ytelser/utils';
 import type {
@@ -9,6 +8,7 @@ import type {
 } from 'src/generated/modiapersonoversikt-api';
 import type { UtbetalingPaaVent } from 'src/models/ytelse/ytelse-utbetalinger';
 import { datoEllerNull, NOKellerNull } from 'src/utils/string-utils';
+import { utledUtbetalingPåVentÅrsak } from 'src/utils/utledUtbetalingerPåVentÅrsak';
 
 const EmptyMessage = () => (
     <InlineMessage status="info" size="small">

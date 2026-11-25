@@ -2,7 +2,7 @@ import dayjs from 'dayjs';
 import { statiskMockUtbetaling, statiskMockYtelse } from 'src/mock/utbetalinger/statiskMockUtbetaling';
 import type { Periode } from 'src/models/tid';
 import { PeriodeValg, type UtbetalingFilterState } from 'src/redux/utbetalinger/types';
-import { ISO_DATE_FORMAT } from 'src/utils/date-utils';
+import { getPeriodeFromYtelser, ISO_DATE_FORMAT } from 'src/utils/date-utils';
 import { getMockUtbetaling, getMockYtelse } from '../../../../../mock/utbetalinger/utbetalinger-mock';
 import type { Utbetaling, Ytelse } from '../../../../../models/utbetalinger';
 import {
@@ -11,7 +11,6 @@ import {
     getFraDateFromFilter,
     getGjeldendeDatoForUtbetaling,
     getNettoSumYtelser,
-    getPeriodeFromYtelser,
     getTilDateFromFilter,
     getTrekkSumYtelser,
     getTypeFromYtelse,

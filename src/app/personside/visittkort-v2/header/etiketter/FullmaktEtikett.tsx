@@ -1,5 +1,5 @@
 import EtikettBase from 'nav-frontend-etiketter';
-import type { Person } from '../../PersondataDomain';
+import type { Person } from 'src/models/person/persondata';
 
 interface Props {
     fullmektige: Person['fullmektige'];

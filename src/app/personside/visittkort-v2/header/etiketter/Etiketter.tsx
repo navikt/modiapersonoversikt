@@ -1,6 +1,6 @@
+import type { Person } from 'src/models/person/persondata';
 import styled from 'styled-components';
 import ErrorBoundary from '../../../../../components/ErrorBoundary';
-import type { Person } from '../../PersondataDomain';
 import DiskresjonskodeEtikett from './DiskresjonskodeEtikett';
 import DodsboEtikett from './DodsboEtikett';
 import EgenAnsattEtikett from './EgenAnsattEtikett';

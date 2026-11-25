@@ -1,6 +1,6 @@
 import { act } from '@testing-library/react';
 import { statiskKommendeUtbetaling } from 'src/mock/ytelse/statiskSykepengerMock';
-import { renderWithProviders } from '../../../../../../test/Testprovider';
+import { renderWithProviders } from '../../../../../../test/LegacyTestprovider';
 import KommendeUtbetalinger from './KommendeUtbetalinger';
 
 test('Kommende enkelutbetaling matcher snapshot', async () => {

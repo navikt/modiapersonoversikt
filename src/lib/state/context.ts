@@ -1,5 +1,5 @@
 import { atom, useAtomValue } from 'jotai';
-import type { Enhet } from 'src/app/internarbeidsflatedecorator/decoratorprops';
+import type { Enhet } from 'src/models/enhet';
 
 export const aktivBrukerAtom = atom<string>();
 export const aktivBrukerLastetAtom = atom<boolean>(false);

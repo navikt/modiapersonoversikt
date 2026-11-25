@@ -3,7 +3,6 @@ import { Accordion, Button, Heading, HStack, InlineMessage, VStack } from '@navi
 import { useMemo, useState } from 'react';
 import { UtbetalingerTabell } from 'src/components/Utbetaling/UtbetalingerTabell';
 import {
-    formaterNOK,
     maanedOgAarForUtbetaling,
     summertNettobelopFraUtbetalinger,
     useFilterUtbetalinger,
@@ -12,6 +11,7 @@ import {
 import type { Utbetaling } from 'src/generated/modiapersonoversikt-api';
 import { trackVisDetaljvisning } from 'src/utils/analytics';
 import { type GroupedArray, groupArray } from 'src/utils/groupArray';
+import { formaterNOK } from 'src/utils/string-utils';
 
 interface UtbetalingMedPeriode {
     category: string;

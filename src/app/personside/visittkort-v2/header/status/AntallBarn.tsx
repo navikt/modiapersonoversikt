@@ -1,7 +1,7 @@
 import AdvarselIkonSvg from 'nav-frontend-ikoner-assets/assets/advarsel-sirkel-fyll.svg';
 import type * as React from 'react';
+import type { ForelderBarnRelasjon } from 'src/models/person/persondata';
 import styled from 'styled-components';
-import type { ForelderBarnRelasjon } from '../../PersondataDomain';
 import { erDod, hentBarn, hentBarnUnder22 } from '../../visittkort-utils';
 
 interface Props {

@@ -3,17 +3,16 @@ import { useForm, type ValidationError } from '@tanstack/react-form';
 import { useSearch } from '@tanstack/react-router';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { useCallback, useMemo, useRef, useState } from 'react';
-import DraftStatus from 'src/app/personside/dialogpanel/DraftStatus';
-import type { Draft, DraftContext } from 'src/app/personside/dialogpanel/use-draft';
-import useDraft from 'src/app/personside/dialogpanel/use-draft';
 import { Link } from 'src/components/Link';
 import { getFormattertMeldingsDato, nyesteMelding, traadstittel } from 'src/components/Meldinger/List/utils';
 import { AvbrytAlert } from 'src/components/melding/AvbrytAlert';
+import DraftStatus from 'src/components/melding/DraftStatus';
 import { SaksbehandlerNavnDialog } from 'src/components/melding/SaksbehandlerNavnDialog';
 import AutoCompleteTekstTips from 'src/components/melding/standardtekster/AutoCompleteTekstTips';
 import StandardTekstModal from 'src/components/melding/standardtekster/StandardTeksterModal';
 import { settInnStandardTekst } from 'src/components/melding/standardtekster/settInnStandardTekst';
 import { useNyesteVurderSvarOppgaveForTraad, useSendMelding } from 'src/lib/clients/modiapersonoversikt-api';
+import useDraft from 'src/lib/hooks/useDraft';
 import { useSuspendingBrukernavn } from 'src/lib/hooks/useSuspendingBrukernavn';
 import { aktivEnhetAtom, usePersonAtomValue } from 'src/lib/state/context';
 import { overskridKontaktReservasjonAtom, svarUnderArbeidAtom, useDisableDialog } from 'src/lib/state/dialog';
@@ -24,6 +23,7 @@ import {
     TraadType
 } from 'src/lib/types/modiapersonoversikt-api';
 import { type Temagruppe, temagruppeTekst } from 'src/lib/types/temagruppe';
+import type { Draft, DraftContext } from 'src/models/meldinger/draft';
 import { trackFortsettDialog, trackGenereltUmamiEvent, trackingEvents } from 'src/utils/analytics';
 import useDynamicHeightTextArea from 'src/utils/hooks/use-dynamic-height-text-area';
 import type { z } from 'zod';

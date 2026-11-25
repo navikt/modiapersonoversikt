@@ -1,8 +1,9 @@
 import { act } from '@testing-library/react';
 import { statiskMockUtbetaling } from '../../../../mock/utbetalinger/statiskMockUtbetaling';
 import utbetalingerResource from '../../../../rest/resources/utbetalingerResource';
-import { renderWithProviders } from '../../../../test/Testprovider';
-import { mockReactQuery, setupReactQueryMocks } from '../../../../test/testStore';
+import { renderWithProviders } from '../../../../test/LegacyTestprovider';
+import { mockReactQuery } from '../../../../test/mockReactQuery';
+import { setupReactQueryMocks } from '../../../../test/testStore';
 import UtbetalingerContainer from './UtbetalingerContainer';
 
 test('Viser utbetalingercontainer med alt innhold', async () => {

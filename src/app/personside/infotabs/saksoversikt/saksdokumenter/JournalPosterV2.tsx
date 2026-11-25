@@ -213,7 +213,7 @@ function JournalPoster(props: Props) {
         fieldCompareJournalposter
     );
     const handleOppdaterAvsenderFilter = (filter: 'nav' | 'andre' | 'bruker') => {
-        const query = avsenderFilterQuery ?? [];
+        const query: ('nav' | 'andre' | 'bruker')[] = avsenderFilterQuery ?? [];
         const avsender = query.includes(filter) ? query.filter((f) => f !== filter) : [...query, filter];
         navigate({
             from: isFullscreen ? '/saker' : '/person/saker',

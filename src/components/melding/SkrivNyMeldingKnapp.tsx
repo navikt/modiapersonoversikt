@@ -3,7 +3,8 @@ import { BodyLong, Button, Dialog, HStack } from '@navikt/ds-react';
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { useRef, useState } from 'react';
 import { referatResultatAtom } from 'src/components/melding/MeldingPanel';
-import { draftAtom, nyMeldingUnderArbeidAtom, svarUnderArbeidAtom } from 'src/lib/state/dialog';
+import { nyMeldingUnderArbeidAtom, svarUnderArbeidAtom } from 'src/lib/state/dialog';
+import { draftAtom } from 'src/lib/state/draft';
 import { trackGenereltUmamiEvent, trackingEvents } from 'src/utils/analytics';
 
 export const SkrivNyMeldingKnapp = () => {
