@@ -138,6 +138,11 @@ export default defineConfig({
             modules: {
                 classNameStrategy: 'non-scoped'
             }
+        },
+        env: {
+            SKIP_PREFLIGHT_CHECK: 'true',
+            NODE_ENV: 'test',
+            VITE_MOCK_ENABLED: 'false'
         }
     }
 });
