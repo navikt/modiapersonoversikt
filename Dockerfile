@@ -1,7 +1,7 @@
 FROM europe-north1-docker.pkg.dev/cgr-nav/pull-through/nav.no/node:24-dev AS builder
 
 USER root
-RUN npm install -g pnpm@11.6.0
+RUN npm install -g pnpm@12.23.0
 
 WORKDIR /app
 COPY pnpm-lock.yaml  /app
