@@ -33,6 +33,23 @@ const varselInnholdNavn = 'Innhold i varselet til brukeren';
 const revarselInnholdNavn = 'Innhold i revarselet til brukeren';
 
 describe('VarselDetail', () => {
+    test.each(['SMS', null, undefined])('viser HTML som klartekst når kanalen er %s', (kanal) => {
+        const tekst = '<p>Hei <strong>du</strong></p>';
+        render(<VarselDetail valgtVarsel={createVarselData({ kanal, tekst })} />);
+
+        const innhold = screen.getByRole('region', { name: varselInnholdNavn });
+        expect(within(innhold).getByText(tekst)).toBeInTheDocument();
+        expect(innhold.querySelector('strong')).toBeNull();
+    });
+
+    test('beholder klartekst i e-post uendret med linjeskift, spesialtegn og e-postadresse', () => {
+        const tekst = 'Hei!\nBeløp < 100 & > 10.\nKontakt <nav@nav.no>. Vis &amp; som skrevet.';
+        render(<VarselDetail valgtVarsel={createVarselData({ kanal: 'EPOST', tekst })} />);
+
+        const innhold = screen.getByRole('region', { name: varselInnholdNavn });
+        expect(within(innhold).getByText(tekst, { normalizer: (verdi) => verdi })).toHaveClass('whitespace-pre-wrap');
+    });
+
     test('viser tittel og tekst fra eksternt varsel i en merket blokk', () => {
         render(
             <VarselDetail
@@ -66,7 +83,7 @@ describe('VarselDetail', () => {
 
         expect(screen.queryByRole('region', { name: varselInnholdNavn })).not.toBeInTheDocument();
         expect(screen.queryByRole('region', { name: revarselInnholdNavn })).not.toBeInTheDocument();
-        expect(screen.getByText(originalVarsel.innhold.tekst)).toBeInTheDocument();
+        expect(screen.getByText(`Varsel: ${originalVarsel.innhold.tekst}`)).toBeInTheDocument();
         expect(screen.getByText('Produsert av:')).toBeInTheDocument();
         expect(screen.getByText(originalVarsel.produsent!)).toBeInTheDocument();
     });

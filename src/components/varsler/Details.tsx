@@ -1,6 +1,7 @@
-import { BodyLong, BodyShort, ErrorMessage, Heading, HStack, VStack } from '@navikt/ds-react';
+import { BodyShort, ErrorMessage, Heading, HStack, VStack } from '@navikt/ds-react';
 import Card from 'src/components/Card';
 import ErrorBoundary from 'src/components/ErrorBoundary';
+import { EksternVarselTekst } from 'src/components/varsler/EksternVarselTekst';
 import type { VarselData } from 'src/components/varsler/List/utils';
 import type { Feilhistorikk, Varsel } from 'src/lib/types/modiapersonoversikt-api';
 import { ENDASH, emptyReplacement, formaterDato } from 'src/utils/string-utils';
@@ -47,7 +48,13 @@ const DittNavInformasjonsLinje = ({ tittel, tekst }: { tittel: string; tekst: st
     );
 };
 
-const VarselInnholdBlokk = ({ tittel, felter }: { tittel: string; felter: { label: string; verdi: string }[] }) => {
+const VarselInnholdBlokk = ({
+    tittel,
+    felter
+}: {
+    tittel: string;
+    felter: { label: string; verdi: string; kanal?: string | null }[];
+}) => {
     if (felter.length === 0) {
         return null;
     }
@@ -59,7 +66,7 @@ const VarselInnholdBlokk = ({ tittel, felter }: { tittel: string; felter: { labe
                     {tittel}
                 </Heading>
                 <dl className="m-0 flex flex-col gap-2">
-                    {felter.map(({ label, verdi }) => (
+                    {felter.map(({ label, verdi, kanal }) => (
                         <div key={label}>
                             <dt>
                                 <BodyShort size="small" weight="semibold">
@@ -67,9 +74,7 @@ const VarselInnholdBlokk = ({ tittel, felter }: { tittel: string; felter: { labe
                                 </BodyShort>
                             </dt>
                             <dd className="m-0">
-                                <BodyLong size="small" className="break-words whitespace-pre-wrap">
-                                    {verdi}
-                                </BodyLong>
+                                <EksternVarselTekst tekst={verdi} kanal={kanal} />
                             </dd>
                         </div>
                     ))}
@@ -83,8 +88,8 @@ const DittNavInformasjonsLinjer = ({ varsel, kanaler }: { varsel: Varsel; kanale
     const eksternVarsling = varsel.eksternVarsling;
     const innholdIFelter = [
         { label: 'Tittel', verdi: eksternVarsling.tittel },
-        { label: 'Tekst', verdi: eksternVarsling.tekst }
-    ].filter((felt): felt is { label: string; verdi: string } => Boolean(felt.verdi?.trim()));
+        { label: 'Tekst', verdi: eksternVarsling.tekst, kanal: eksternVarsling.kanal }
+    ].filter((felt): felt is { label: string; verdi: string; kanal?: string | null } => Boolean(felt.verdi?.trim()));
     const revarselFelter = [
         {
             label: 'Tittel',
@@ -94,29 +99,30 @@ const DittNavInformasjonsLinjer = ({ varsel, kanaler }: { varsel: Varsel; kanale
         {
             label: 'Tekst',
             verdi: eksternVarsling.renotifikasjonTekst,
-            original: eksternVarsling.tekst
+            original: eksternVarsling.tekst,
+            kanal: eksternVarsling.renotifikasjonKanal
         }
     ].filter(
-        (felt): felt is { label: string; verdi: string; original: string | null | undefined } =>
+        (felt): felt is { label: string; verdi: string; original: string | null | undefined; kanal?: string | null } =>
             Boolean(felt.verdi?.trim()) && felt.verdi !== felt.original
     );
 
     return (
         <>
-            <VStack gap="space-4" className="p-2">
-                <BodyShort size="medium" className="mb-4" weight="semibold">
-                    {varsel.innhold.tekst}
+            <VStack className="p-2">
+                <BodyShort size="medium" weight="semibold">
+                    {`Varsel: ${varsel.innhold.tekst}`}
                 </BodyShort>
-                <DittNavInformasjonsLinje tittel="Produsert av:" tekst={emptyReplacement(varsel.produsent, ENDASH)} />
-                <DittNavInformasjonsLinje tittel="Link:" tekst={emptyReplacement(varsel.innhold.link, ENDASH)} />
             </VStack>
             {(innholdIFelter.length > 0 || revarselFelter.length > 0) && (
-                <VStack gap="space-4" className="px-2 py-4">
+                <VStack gap="space-4" className="p-2">
                     <VarselInnholdBlokk tittel="Innhold i varselet til brukeren" felter={innholdIFelter} />
                     <VarselInnholdBlokk tittel="Innhold i revarselet til brukeren" felter={revarselFelter} />
                 </VStack>
             )}
             <VStack gap="space-4" className="px-2">
+                <DittNavInformasjonsLinje tittel="Produsert av:" tekst={emptyReplacement(varsel.produsent, ENDASH)} />
+                <DittNavInformasjonsLinje tittel="Link:" tekst={emptyReplacement(varsel.innhold.link, ENDASH)} />
                 <DittNavInformasjonsLinje
                     tittel="Varslet: "
                     tekst={
