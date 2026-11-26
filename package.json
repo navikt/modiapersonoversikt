@@ -3,7 +3,7 @@
     "version": "0.4.2",
     "private": false,
     "license": "MIT",
-    "packageManager": "pnpm@11.6.0",
+    "packageManager": "pnpm@12.23.0",
     "main": "build/dist/index.js",
     "type": "module",
     "files": [
