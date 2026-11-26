@@ -1207,6 +1207,12 @@ export interface components {
             feilhistorikk: components["schemas"]["Feilhistorikk"][];
             /** Format: date-time */
             sistOppdatert: string;
+            kanal?: string | null;
+            tittel?: string | null;
+            tekst?: string | null;
+            renotifikasjonKanal?: string | null;
+            renotifikasjonTittel?: string | null;
+            renotifikasjonTekst?: string | null;
         };
         Arbeidgiver: {
             orgnr: string;
@@ -1329,14 +1335,6 @@ export interface components {
         LocalDate: {
             /** Format: date */
             value?: string;
-            /**
-             * Format: int32
-             * @deprecated
-             * @description Use the 'month' property instead
-             */
-            monthNumber: number;
-            /** Format: date */
-            value$kotlinx_datetime: string;
             /** Format: int32 */
             year: number;
             /**
@@ -1353,20 +1351,18 @@ export interface components {
             dayOfYear: number;
             /** Format: int32 */
             day: number;
-        };
-        LocalDateTime: {
-            /** Format: date-time */
-            value?: string;
+            /** Format: date */
+            value$kotlinx_datetime: string;
             /**
              * Format: int32
              * @deprecated
              * @description Use the 'month' property instead
              */
             monthNumber: number;
-            /** Format: int32 */
-            nanosecond: number;
+        };
+        LocalDateTime: {
             /** Format: date-time */
-            value$kotlinx_datetime: string;
+            value?: string;
             time: components["schemas"]["LocalTime"];
             /** Format: int32 */
             year: number;
@@ -1391,20 +1387,30 @@ export interface components {
             date: components["schemas"]["LocalDate"];
             /** Format: int32 */
             day: number;
+            /** Format: date-time */
+            value$kotlinx_datetime: string;
+            /**
+             * Format: int32
+             * @deprecated
+             * @description Use the 'month' property instead
+             */
+            monthNumber: number;
+            /** Format: int32 */
+            nanosecond: number;
         };
         LocalTime: {
             /** Format: time-local */
             value?: string;
-            /** Format: int32 */
-            nanosecond: number;
-            /** Format: time-local */
-            value$kotlinx_datetime: string;
             /** Format: int32 */
             hour: number;
             /** Format: int32 */
             minute: number;
             /** Format: int32 */
             second: number;
+            /** Format: time-local */
+            value$kotlinx_datetime: string;
+            /** Format: int32 */
+            nanosecond: number;
         };
         ResultatSoknadsstatus: {
             resultat: components["schemas"]["SoknadsstatusSakstema"][];

@@ -1,4 +1,4 @@
-import { BodyShort, ErrorMessage, HStack, VStack } from '@navikt/ds-react';
+import { BodyLong, BodyShort, ErrorMessage, Heading, HStack, VStack } from '@navikt/ds-react';
 import Card from 'src/components/Card';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import type { VarselData } from 'src/components/varsler/List/utils';
@@ -47,8 +47,59 @@ const DittNavInformasjonsLinje = ({ tittel, tekst }: { tittel: string; tekst: st
     );
 };
 
+const VarselInnholdBlokk = ({ tittel, felter }: { tittel: string; felter: { label: string; verdi: string }[] }) => {
+    if (felter.length === 0) {
+        return null;
+    }
+
+    return (
+        <section aria-label={tittel} className="rounded-md border border-ax-border-neutral-subtle p-4">
+            <VStack gap="space-4">
+                <Heading level="3" size="small">
+                    {tittel}
+                </Heading>
+                <dl className="m-0 flex flex-col gap-2">
+                    {felter.map(({ label, verdi }) => (
+                        <div key={label}>
+                            <dt>
+                                <BodyShort size="small" weight="semibold">
+                                    {label}
+                                </BodyShort>
+                            </dt>
+                            <dd className="m-0">
+                                <BodyLong size="small" className="break-words whitespace-pre-wrap">
+                                    {verdi}
+                                </BodyLong>
+                            </dd>
+                        </div>
+                    ))}
+                </dl>
+            </VStack>
+        </section>
+    );
+};
+
 const DittNavInformasjonsLinjer = ({ varsel, kanaler }: { varsel: Varsel; kanaler: string[] }) => {
     const eksternVarsling = varsel.eksternVarsling;
+    const innholdIFelter = [
+        { label: 'Tittel', verdi: eksternVarsling.tittel },
+        { label: 'Tekst', verdi: eksternVarsling.tekst }
+    ].filter((felt): felt is { label: string; verdi: string } => Boolean(felt.verdi?.trim()));
+    const revarselFelter = [
+        {
+            label: 'Tittel',
+            verdi: eksternVarsling.renotifikasjonTittel,
+            original: eksternVarsling.tittel
+        },
+        {
+            label: 'Tekst',
+            verdi: eksternVarsling.renotifikasjonTekst,
+            original: eksternVarsling.tekst
+        }
+    ].filter(
+        (felt): felt is { label: string; verdi: string; original: string | null | undefined } =>
+            Boolean(felt.verdi?.trim()) && felt.verdi !== felt.original
+    );
 
     return (
         <>
@@ -59,6 +110,12 @@ const DittNavInformasjonsLinjer = ({ varsel, kanaler }: { varsel: Varsel; kanale
                 <DittNavInformasjonsLinje tittel="Produsert av:" tekst={emptyReplacement(varsel.produsent, ENDASH)} />
                 <DittNavInformasjonsLinje tittel="Link:" tekst={emptyReplacement(varsel.innhold.link, ENDASH)} />
             </VStack>
+            {(innholdIFelter.length > 0 || revarselFelter.length > 0) && (
+                <VStack gap="space-4" className="px-2 py-4">
+                    <VarselInnholdBlokk tittel="Innhold i varselet til brukeren" felter={innholdIFelter} />
+                    <VarselInnholdBlokk tittel="Innhold i revarselet til brukeren" felter={revarselFelter} />
+                </VStack>
+            )}
             <VStack gap="space-4" className="px-2">
                 <DittNavInformasjonsLinje
                     tittel="Varslet: "
