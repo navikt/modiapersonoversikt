@@ -25,6 +25,20 @@ av tokens for kallene som skjer til `/proxy` og `/modiapersonoversikt-draft`.
 Kun et `LOCAL_TOKEN` er nødvendig. Dette kan hentes fra
 <https://azure-token-generator.intern.dev.nav.no/api/obo?aud=dev-gcp:personoversikt:modiapersonoversikt>.
 
+For å åpne token-generatoren i standardnettleseren og starte appen uten mockdata:
+
+```console
+pnpm run start:local
+```
+
+Dette krever tilkobling med naisdevice og installerte pakker (`pnpm i`).
+Logg inn med utviklingsbrukeren din hvis du ikke allerede er innlogget.
+Kopier verdien av `access_token` fra nettleseren, lim den inn i terminalen og trykk Enter.
+Anførselstegn rundt tokenet fjernes automatisk. Ikke lim inn hele JSON-responsen.
+Inntastingen er skjult og havner ikke i shell-historikken.
+Skriptet setter `LOCAL_TOKEN` for devserveren uten å lagre tokenet på disk.
+Kjør kommandoen på nytt når tokenet utløper.
+
 #### Laste ned pakker fra @navikt 
 Opprett GitHub-token og konfigurer SSO for å autorisere tokenet mot navikt (husk å legg til expiration date)
 Set tokenet i pnpm config:
