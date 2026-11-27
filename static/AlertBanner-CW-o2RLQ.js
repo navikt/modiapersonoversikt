@@ -1,0 +1,2 @@
+import{n as e,t}from"./compiler-runtime-BN3Mtt5a.js";import{zr as n}from"./main-BYAwZBpN.js";var r=t(),i=e(),a=e=>{let t=(0,r.c)(4),{alerts:n}=e,a;t[0]===n?a=t[1]:(a=n.map(o),t[0]=n,t[1]=a);let s;return t[2]===a?s=t[3]:(s=(0,i.jsx)(i.Fragment,{children:a}),t[2]=a,t[3]=s),s};function o(e){return(0,i.jsx)(n,{className:`mb-0.5`,variant:`warning`,size:`small`,children:e},e)}export{a as t};
+//# sourceMappingURL=AlertBanner-CW-o2RLQ.js.map

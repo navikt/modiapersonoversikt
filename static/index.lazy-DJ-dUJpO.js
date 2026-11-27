@@ -1,0 +1,2 @@
+import{n as e,t}from"./compiler-runtime-BN3Mtt5a.js";import{n,s as r}from"./fileRoute-CGnuaRWx.js";var i=t(),a=e(),o=n(`/new/person/`)({component:s});function s(){let e=(0,i.c)(1),t;return e[0]===Symbol.for(`react.memo_cache_sentinel`)?(t=(0,a.jsx)(r,{to:`/new/person/hjem`,replace:!0}),e[0]=t):t=e[0],t}export{o as Route};
+//# sourceMappingURL=index.lazy-DJ-dUJpO.js.map
